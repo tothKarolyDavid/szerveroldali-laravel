@@ -10,7 +10,7 @@ A feladathoz **kötelező kiinduló csomag nincs**, javasolt azonban a **Laravel
 
 ### Adatmodellek
 
-- [ ] `Team` - egy csapat
+- [x] `Team` - egy csapat
   - `id`
   - `name` (string, egyedi)
   - `shortname` (string, egyedi, max. 4 karakter)

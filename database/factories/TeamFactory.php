@@ -14,10 +14,19 @@ class TeamFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    /*
+        Team - egy csapat
+            id
+            name (string, egyedi)
+            shortname (string, egyedi, maximum 4 karakter)
+            image (string, lehet null)
+            időbélyegek
+    */
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->unique()->name(),
+            'shortname' => $this->faker->unique()->max(4),
         ];
     }
 }
