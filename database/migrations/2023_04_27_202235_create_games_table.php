@@ -9,10 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    /*
+    Game - egy mérkőzés
+        id
+        start (datetime)
+        finished (logikai, alapértelmezetten hamis)
+        időbélyegek
+    */
     public function up(): void
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->datetime('start');
+            $table->boolean('finished')->default(false);
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Team::factory(10)->create();
         Player::factory(10)->create();
+        Game::factory(10)->create();
 
 
         // \App\Models\User::factory()->create([

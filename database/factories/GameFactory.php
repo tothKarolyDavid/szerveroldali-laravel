@@ -14,10 +14,18 @@ class GameFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    /*
+    Game - egy mérkőzés
+        id
+        start (datetime)
+        finished (logikai, alapértelmezetten hamis)
+        időbélyegek
+    */
     public function definition(): array
     {
         return [
-            //
+            'start' => $this->faker->dateTime(),
+            'finished' => $this->faker->boolean(),
         ];
     }
 }
