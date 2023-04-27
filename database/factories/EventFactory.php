@@ -14,10 +14,18 @@ class EventFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    /*
+    Event - egy esemény egy mérkőzésen belül
+        id
+        type (enum - eseménytípusok: gól, öngól, sárga lap, piros lap)
+        minute (integer, hanyadik percben történt az esemény)
+        időbélyegek
+    */
     public function definition(): array
     {
         return [
-            //
+            'type' => $this->faker->randomElement(['goal', 'owngoal', 'yellowcard', 'redcard']),
+            'minute' => $this->faker->numberBetween(1, 90),
         ];
     }
 }

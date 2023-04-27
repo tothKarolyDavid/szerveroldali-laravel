@@ -9,10 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    /*
+    Event - egy esemény egy mérkőzésen belül
+        id
+        type (enum - eseménytípusok: gól, öngól, sárga lap, piros lap)
+        minute (integer, hanyadik percben történt az esemény)
+        időbélyegek
+    */
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['goal', 'owngoal', 'yellowcard', 'redcard']);
+            $table->integer('minute');
             $table->timestamps();
         });
     }
