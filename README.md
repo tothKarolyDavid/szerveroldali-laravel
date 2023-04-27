@@ -32,7 +32,7 @@ A feladathoz **kötelező kiinduló csomag nincs**, javasolt azonban a **Laravel
   - `type` (enum - eseménytípusok: gól, öngól, sárga lap, piros lap)
   - `minute` (integer, hanyadik percben történt az esemény)
   - `időbélyegek`
-- [ ] `User` - ez már készen érkezik, csak egy mezővel kell kiegészíteni
+- [x] `User` - ez már készen érkezik, csak egy mezővel kell kiegészíteni
   - `is_admin` (logikai, alapértelmezetten hamis)
 
 ### Kapcsolatok
@@ -50,12 +50,12 @@ A feladathoz **kötelező kiinduló csomag nincs**, javasolt azonban a **Laravel
 
 Külön pontszám nélküli **minimumkövetelményként** teljesítendők az alábbi programozási feladatok:
 
-- [ ] Az alkalmazást **Laravel 10** keretrendszerben, **SQLite** adatbázis használatával kell megvalósítani!
+- [x] Az alkalmazást **Laravel 10** keretrendszerben, **SQLite** adatbázis használatával kell megvalósítani!
 - [ ] A csomagkezelők által karbantartott mappákat (`vendor` és `node_modules`) feltölteni **TILOS**! Ugyanakkor alapelvárás, hogy a beadott _.zip_-ből az alkalmazás a következő inicializációs fájlokkal (és nem többel) **beüzemelhető** legyen:
   - [init.bat](https://gist.githubusercontent.com/totadavid95/10c2b013a5c8a0a98d16cb21c45d217a/raw/b94112422523b68a159a0b96912f86fe46868ac3/init.bat) (Windows-on)
   - [init.sh](https://gist.githubusercontent.com/totadavid95/10c2b013a5c8a0a98d16cb21c45d217a/raw/b94112422523b68a159a0b96912f86fe46868ac3/init.sh) (Linux-on / Mac-en)
 - [ ] Fontos az **igényesen kidolgozott felhasználói felület** (frontend). Ez nem azt jelenti, hogy mindent csicsázni kell, de pl. legyen egy közös elrendezése az oldalaknak, ahonnan minden funkcionalitás elérhető a felhasználók számára (nem kell útvonalakat kutatni a kódban és/vagy lekéréseket kézzel építgetni), az űrlapmezők legyenek egyértelműen felcímkézve, hiba esetén kapjanak megfelelő tájékoztatást a **pontos** hibáról, valamint a sikeres műveletekre is legyen valami visszajelzés. A frontend technológia is szabadon választható: javasolt a Tailwind CSS vagy Bootstrap.
-- [ ] Az **időzóna** legyen magyar időre állítva az alkalmazás konfigurációjában!
+- [x] Az **időzóna** legyen magyar időre állítva az alkalmazás konfigurációjában!
 - [ ] A felküldött adatokat **minden esetben** validálni kell **szerveroldalon**, a megfelelő ellenőrzés része az egyes műveletek megvalósítására kapható pontszámnak! HTML szintű validáció (pl. `required` attribútum) **ne is legyen** a kódban, mert ez abszolút nem véd az alkalmazásunkat kijátszani szándékozók ellen!
 
 ### Funkcionális követelmények és pontozásuk
