@@ -6,7 +6,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Team;
-
+use App\Models\Player;
+use App\Models\Game;
+use App\Models\Event;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Team::factory(10)->create();
+        Player::factory(10)->create();
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
