@@ -16,18 +16,18 @@ A feladathoz **kötelező kiinduló csomag nincs**, javasolt azonban a **Laravel
   - `shortname` (string, egyedi, max. 4 karakter)
   - `image` (string, lehet null)
   - `időbélyegek`
-- [ ] `Player` - egy játékos adatai
+- [x] `Player` - egy játékos adatai
   - `id`
   - `name` (string)
   - `number` (integer, a játékos mezszáma)
   - `birthdate` (date)
   - `időbélyegek`
-- [ ] `Game` - egy mérkőzés
+- [x] `Game` - egy mérkőzés
   - `id`
   - `start` (datetime)
   - `finished` (logikai, alapértelmezetten hamis)
   - `időbélyegek`
-- [ ] `Event` - egy esemény egy mérkőzésen belül
+- [x] `Event` - egy esemény egy mérkőzésen belül
   - `id`
   - `type` (enum - eseménytípusok: gól, öngól, sárga lap, piros lap)
   - `minute` (integer, hanyadik percben történt az esemény)
