@@ -25,8 +25,8 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->name(),
-            'shortname' => $this->faker->unique()->max(4),
+            'name' => $this->faker->unique()->company(),
+            'shortname' => $this->faker->unique()->regexify('[A-Z]{4}'),
         ];
     }
 }
