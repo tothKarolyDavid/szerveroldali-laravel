@@ -13,4 +13,9 @@ class Event extends Model
     {
         return $this->belongsTo(Game::class, 'game_id');
     }
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class, 'player_id');
+    }
 }
