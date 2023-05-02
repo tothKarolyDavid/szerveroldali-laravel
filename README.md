@@ -40,7 +40,7 @@ A feladathoz **kötelező kiinduló csomag nincs**, javasolt azonban a **Laravel
 - [x] `Team` 1 : N `Player`
 - [x] `Team` 1 : N `Game` (pl. `home_team_id` néven - a hazai oldalon játszó csapat azonosítója)
 - [x] `Team` 1 : N `Game` (pl. `away_team_id` néven - a vendég oldalon játszó csapat azonosítója)
-- [ ] `Game` 1 : N `Event`
+- [x] `Game` 1 : N `Event`
 - [ ] `Player` 1 : N `Event`
 - [ ] `User` N : N `Team`
 
