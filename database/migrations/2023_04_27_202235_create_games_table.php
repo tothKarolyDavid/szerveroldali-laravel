@@ -23,6 +23,9 @@ return new class extends Migration
             $table->datetime('start');
             $table->boolean('finished')->default(false);
             $table->timestamps();
+
+            $table->foreign('home_team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('away_team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 

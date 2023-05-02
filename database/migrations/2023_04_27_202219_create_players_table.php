@@ -25,6 +25,8 @@ return new class extends Migration
             $table->integer('number');
             $table->date('birthdate');
             $table->timestamps();
+
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 
