@@ -9,6 +9,10 @@ class Event extends Model
 {
     use HasFactory;
 
+    public function id() {
+        return $this->id;
+    }
+
     public function game()
     {
         return $this->belongsTo(Game::class, 'game_id');

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->enum('type', ['goal', 'owngoal', 'yellowcard', 'redcard']);
             $table->integer('minute');
             $table->timestamps();
+            $table->unsignedBigInteger('game_id');
+            $table->unsignedBigInteger('player_id');
 
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
             $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
