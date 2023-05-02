@@ -17,16 +17,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        Team::factory(10)->create();
-        Player::factory(10)->create();
-        Game::factory(10)->create();
-        Event::factory(10)->create();
+        $num_of_users = 10;
+        $num_of_teams = 10;
+        $num_of_players = 11 * $num_of_teams;
+        $num_of_games = 2 * $num_of_teams;
+        $num_of_events = $num_of_games * 5;
 
+        // Felhasználók létrehozása
+        for ($i = 1; $i <= $num_of_users; $i++) {
+            User::factory()->create([
+                'email' => 'user' . $i . '@szerveroldali.hu',
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            ]);
+        }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Admin létrehozása
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@szerveroldali.hu',
+            'password' => '$2y$10$egzsTuQ/eYDOEqFCMCOhBepkCzCLuT/686NlSt2Syop.OAmhMB172', // adminpwd
+            'is_admin' => true,
+        ]);
+
+        Team::factory($num_of_teams)->create();
+        Player::factory($num_of_players)->create();
+        Game::factory($num_of_games)->create();
+        Event::factory($num_of_events)->create();
     }
 }

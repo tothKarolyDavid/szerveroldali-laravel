@@ -60,7 +60,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
 
 ### Funkcionális követelmények és pontozásuk
 
-- [ ] **Modellek és seeder** (4 pont)
+- [x] **Modellek és seeder** (4 pont)
   - Minden modellből kerüljön tárolásra észszerű mennyiségben (pl. 10-15 csapat), valamint a köztük lévő kapcsolatokból is generálj!
   - A seeder fedjen le minél több esetet, tehát legyenek pl. már lejátszott, folyamatban lévő és jövőbeli meccsek is, valamint változatos események az egyes meccseken belül!
   - Minden szükséges seedelés egyetlen parancs kiadására történjen meg: `php artisan db:seed` vagy `php artisan migrate:fresh --seed`
