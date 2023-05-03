@@ -31,7 +31,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <!-- Add active class to the active tab -->
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('games') ? 'active' : '' }}" href="{{ route('games.index') }}">Mérkőzések</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('teams') ? 'active' : '' }}" href="{{ route('teams.index') }}">Csapatok</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('leaderboard') ? 'active' : '' }}" href="{{ route('leaderboard.index') }}">Tabella</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('favorites') ? 'active' : '' }}" href="{{ route('favorites.index') }}">Kedvenceim</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

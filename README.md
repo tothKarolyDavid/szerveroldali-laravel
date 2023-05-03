@@ -66,7 +66,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Minden szükséges seedelés egyetlen parancs kiadására történjen meg: `php artisan db:seed` vagy `php artisan migrate:fresh --seed`
   - Az egyszerű felhasználók **csak** `userX@szerveroldali.hu` (ahol X eleme természetes számok) e-mail címmel és `password` jelszóval jöjjenek létre az egyszerűség kedvéért!
   - Egyetlen **admin** jogosultságú felhasználó legyen, akinek a bejelentkezési adatai fixen: `admin@szerveroldali.hu` - `adminpwd`
-- [ ] **Főoldal** (1 pont)
+- [x] **Főoldal** (1 pont)
   - Az alkalmazás gyökér útvonalán jelenjen meg egy statikus oldal, amelyen tájékoztatást kapunk arról, hogy milyen webhelyre érkeztünk, és a következő menüpontok közül választhatunk:
     - mérkőzések
     - csapatok
