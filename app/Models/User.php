@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function id() {
         return $this->id;
     }
+
+    public function teams() {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
 }

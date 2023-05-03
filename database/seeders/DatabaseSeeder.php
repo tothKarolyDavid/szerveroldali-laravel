@@ -43,5 +43,15 @@ class DatabaseSeeder extends Seeder
         Player::factory($num_of_players)->create();
         Game::factory($num_of_games)->create();
         Event::factory($num_of_events)->create();
+
+        // Kedvenc csapatok hozzárendelése a felhasználókhoz
+        $users = User::all();
+        $teams = Team::all();
+        foreach ($users as $user) {
+            $user->teams()->attach($teams->random(rand(1, 3))->pluck('id')->toArray());
+        }
+
+
+
     }
 }

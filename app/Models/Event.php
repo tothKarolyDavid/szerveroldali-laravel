@@ -15,11 +15,11 @@ class Event extends Model
 
     public function game()
     {
-        return $this->belongsTo(Game::class, 'game_id');
+        return $this->belongsTo(Game::class, 'game_id')->withTimestamps();
     }
 
     public function player()
     {
-        return $this->belongsTo(Player::class, 'player_id');
+        return $this->belongsTo(Player::class, 'player_id')->withTimestamps();
     }
 }
