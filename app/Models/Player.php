@@ -15,11 +15,11 @@ class Player extends Model
 
     public function team()
     {
-        return $this->belongsTo(Team::class, 'team_id')->withTimestamps();
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'player_id')->withTimestamps();
+        return $this->hasMany(Event::class, 'player_id');
     }
 }
