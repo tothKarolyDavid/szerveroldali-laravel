@@ -25,16 +25,9 @@ class GameFactory extends Factory
     */
     public function definition(): array
     {
-        $teams = Team::all();
-        $homeTeam = $teams->random();
-        $awayTeam = $teams->where('id', '!=', $homeTeam->id())->random();
-
         return [
             'start' => $this->faker->dateTime(),
             'finished' => $this->faker->boolean(),
-
-            'home_team_id' => $homeTeam->id(),
-            'away_team_id' => $awayTeam->id(),
         ];
     }
 }

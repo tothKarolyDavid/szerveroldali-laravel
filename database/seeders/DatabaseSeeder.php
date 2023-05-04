@@ -19,9 +19,6 @@ class DatabaseSeeder extends Seeder
     {
         $num_of_users = 10;
         $num_of_teams = 10;
-        $num_of_players = 11 * $num_of_teams;
-        $num_of_games = 2 * $num_of_teams;
-        $num_of_events = $num_of_games * 5;
 
         // Felhasználók létrehozása
         for ($i = 1; $i <= $num_of_users; $i++) {
@@ -39,10 +36,42 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        Team::factory($num_of_teams)->create();
-        Player::factory($num_of_players)->create();
-        Game::factory($num_of_games)->create();
-        Event::factory($num_of_events)->create();
+        // Csapatok létrehozása
+        $teams = Team::factory($num_of_teams)->create();
+
+        // Játékosok létrehozása
+        foreach ($teams as $team) {
+            Player::factory(11)->create([
+                'team_id' => $team->id(),
+            ]);
+        }
+
+        // Mérkőzések létrehozása
+        foreach ($teams as $home_team) {
+            foreach ($teams as $away_team) {
+                if ($home_team->id() != $away_team->id()) {
+                    Game::factory()->create([
+                        'home_team_id' => $home_team->id(),
+                        'away_team_id' => $away_team->id(),
+                    ]);
+                }
+            }
+        }
+
+        // Események létrehozása
+        $games = Game::all();
+        $players = Player::all();
+        foreach ($games as $game) {
+            $num_of_events = rand(5, 10);
+            for ($i = 0; $i < $num_of_events; $i++) {
+                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
+                $player = $players->where('team_id', $team->id())->random();
+                Event::factory()->create([
+                    'game_id' => $game->id(),
+                    'player_id' => $player->id(),
+                ]);
+            }
+        }
 
         // Kedvenc csapatok hozzárendelése a felhasználókhoz
         $users = User::all();
@@ -50,8 +79,5 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             $user->teams()->attach($teams->random(rand(1, 3))->pluck('id')->toArray());
         }
-
-
-
     }
 }

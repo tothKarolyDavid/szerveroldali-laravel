@@ -32,6 +32,9 @@
             <div class="col-12 col-lg-9">
                 <div class="row g-0">
                     @forelse ($games as $game)
+                    @php
+                        $scores = $game->getTeamScores();
+                    @endphp
                     <div class="card mb-3" style="">
                         <div class="row g-0">
                             <div class="col">
@@ -53,13 +56,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col text-center">
-                                            <h5 class="card-title">{{ $game->getTeamScores()['home_team_score'] }}</h5>
+                                            <h5 class="card-title">{{ $scores['home_team_score'] }}</h5>
                                         </div>
                                         <div class="col text-center">
                                             -
                                         </div>
                                         <div class="col text-center">
-                                            <h5 class="card-title">{{ $game->getTeamScores()['away_team_score'] }}</h5>
+                                            <h5 class="card-title">{{ $scores['away_team_score'] }}</h5>
                                         </div>
                                     </div>
 
@@ -92,75 +95,13 @@
                     @endforelse
                 </div>
 
-                {{-- ITT A VEGA --}}
-
-
-                <div class="row g-0">
-                    {{-- TODO: Read posts from DB --}}
-
-                    @forelse ($games as $game)
-
-                        <div class="card w-100 mb-3">
-                            <div class="col-4">
-                                <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-start"
-                                    alt="">
-                            </div>
-
-
-                            <div class="card-body col-md-4">
-                                {{-- TODO: Title --}}
-                                <h5 class="card-title mb-0">Post title</h5>
-                                <p class="small mb-0">
-                                    <span class="me-2">
-                                        <i class="fas fa-user"></i>
-                                        {{-- TODO: Author --}}
-                                        <span>By Author</span>
-                                    </span>
-
-                                    <span>
-                                        <i class="far fa-calendar-alt"></i>
-                                        {{-- TODO: Date --}}
-                                        <span>01/01/2022</span>
-                                    </span>
-                                </p>
-
-                                {{-- TODO: Read post categories from DB --}}
-                                @foreach (['primary', 'secondary', 'danger', 'warning', 'info', 'dark'] as $category)
-                                    <a href="#" class="text-decoration-none">
-                                        <span class="badge bg-{{ $category }}">{{ $category }}</span>
-                                    </a>
-                                @endforeach
-
-                                {{-- TODO: Short desc --}}
-                                <p class="card-text mt-1">Short description</p>
-                            </div>
-
-                            <div class="col-md-4">
-                                <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-start"
-                                    alt="">
-                            </div>
-
-                            <div class="card-footer">
-                                {{-- TODO: Link --}}
-                                <a href="#" class="btn btn-primary">
-                                    <span>View post</span> <i class="fas fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="col-12">
-                            <div class="alert alert-warning" role="alert">
-                                Nincsnek mérkőzések
-                            </div>
-                        </div>
-                    @endforelse
-                </div>
-
                 <div class="d-flex justify-content-center">
-                    {{-- TODO: Pagination --}}
+                    {{-- TODO: Pagination Bootsrap 5 --}}
+
                 </div>
 
             </div>
+
 
             {{-- Oldalsav --}}
             <div class="col-12 col-lg-3">

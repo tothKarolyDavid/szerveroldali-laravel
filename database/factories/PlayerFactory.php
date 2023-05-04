@@ -25,24 +25,12 @@ class PlayerFactory extends Factory
         birthdate (date)
         időbélyegek
     */
-    private $current_team_id = 1;
-    private $current_num_of_players = 0;
-
     public function definition(): array
     {
-        $this->current_num_of_players++;
-        $team_id = $this->current_team_id;
-
-        if ($this->current_num_of_players == 11) {
-            $this->current_team_id++;
-            $this->current_num_of_players = 0;
-        }
-
         return [
             'name' => $this->faker->name(),
             'number' => $this->faker->numberBetween(1, 99),
             'birthdate' => $this->faker->date(),
-            'team_id' => $team_id,
         ];
     }
 }
