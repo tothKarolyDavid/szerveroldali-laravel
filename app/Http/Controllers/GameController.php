@@ -13,8 +13,14 @@ class GameController extends Controller
      */
     public function index()
     {
+        $games = Game::all()->sortBy('start', SORT_REGULAR, true);
+
+        $games_in_progress = $games->where('finished', false);
+        $games_finished = $games->where('finished', true);
+
         return view('games.index', [
-            'games' => Game::all()
+            'games_in_progress' => $games_in_progress,
+            'games_finished' => $games_finished
         ]);
     }
 
