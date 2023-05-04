@@ -53,13 +53,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col text-center">
-                                            <h5 class="card-title">{{ $game->homeTeamScore() }}</h5>
+                                            <h5 class="card-title">{{ $game->getTeamScores()['home_team_score'] }}</h5>
                                         </div>
                                         <div class="col text-center">
                                             -
                                         </div>
                                         <div class="col text-center">
-                                            <h5 class="card-title">{{ $game->awayTeamScore() }}</h5>
+                                            <h5 class="card-title">{{ $game->getTeamScores()['away_team_score'] }}</h5>
                                         </div>
                                     </div>
 

@@ -9,7 +9,8 @@ class Game extends Model
 {
     use HasFactory;
 
-    public function id() {
+    public function id()
+    {
         return $this->id;
     }
 
@@ -28,39 +29,32 @@ class Game extends Model
         return $this->hasMany(Event::class, 'game_id');
     }
 
-    public function homeTeamScore()
+    public function getTeamScores()
     {
-        $score = 0;
+        $home_team_score = 0;
+        $away_team_score = 0;
         $events = $this->events;
         $home_team_id = $this->home_team_id;
         $away_team_id = $this->away_team_id;
 
         foreach ($events as $event) {
-            if ($event->player->team->id == $home_team_id && $event->type == 'goal') {
-                $score++;
-            } elseif ($event->player->team->id == $away_team_id && $event->type == 'own_goal') {
-                $score++;
+            $team_id = $event->player->team->id;
+            $event_type = $event->type;
+
+            if ($team_id == $home_team_id && $event_type == 'goal') {
+                $home_team_score++;
+            } elseif ($team_id == $away_team_id && $event_type == 'goal') {
+                $away_team_score++;
+            } elseif ($team_id == $home_team_id && $event_type == 'own_goal') {
+                $away_team_score++;
+            } elseif ($team_id == $away_team_id && $event_type == 'own_goal') {
+                $home_team_score++;
             }
         }
 
-        return $score;
-    }
-
-    public function awayTeamScore()
-    {
-        $score = 0;
-        $events = $this->events;
-        $home_team_id = $this->home_team_id;
-        $away_team_id = $this->away_team_id;
-
-        foreach ($events as $event) {
-            if ($event->player->team->id == $away_team_id && $event->type == 'goal') {
-                $score++;
-            } elseif ($event->player->team->id == $home_team_id && $event->type == 'own_goal') {
-                $score++;
-            }
-        }
-
-        return $score;
+        return [
+            'home_team_score' => $home_team_score,
+            'away_team_score' => $away_team_score,
+        ];
     }
 }

@@ -15,7 +15,6 @@ class GameController extends Controller
     {
         return view('games.index', [
             'games' => Game::all(),
-
         ]);
     }
 
