@@ -12,14 +12,9 @@ use App\Models\Event;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        $num_of_users = 10;
-        $num_of_teams = 10;
 
+    function create_uses($num_of_users)
+    {
         // Felhasználók létrehozása
         for ($i = 1; $i <= $num_of_users; $i++) {
             User::factory()->create([
@@ -35,6 +30,116 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$egzsTuQ/eYDOEqFCMCOhBepkCzCLuT/686NlSt2Syop.OAmhMB172', // adminpwd
             'is_admin' => true,
         ]);
+    }
+
+    function create_games()
+    {
+        $num_of_future_games = rand(1, 4);
+        $num_of_games_in_progress = rand(3, 5);
+
+        $teams = Team::all();
+        $future_games_generated = 0;
+        $games_in_progress_generated = 0;
+
+        foreach ($teams as $home_team) {
+            foreach ($teams as $away_team) {
+                if ($home_team->id() != $away_team->id()) {
+                    if ($future_games_generated < $num_of_future_games) {
+                        // Jövőbeli mérkőzések
+                        Game::factory()->create([
+                            'home_team_id' => $home_team->id(),
+                            'away_team_id' => $away_team->id(),
+                            'start' => now()->addDays(rand(1, 30)),
+                            'finished' => false,
+                        ]);
+                        $future_games_generated++;
+                    } elseif ($games_in_progress_generated < $num_of_games_in_progress) {
+                        // Folyamatban lévő mérkőzések
+                        Game::factory()->create([
+                            'home_team_id' => $home_team->id(),
+                            'away_team_id' => $away_team->id(),
+                            'start' => now()->subMinutes(rand(1, 90)),
+                            'finished' => false,
+                        ]);
+                        $games_in_progress_generated++;
+                    } else {
+                        // Lejátszott mérkőzések
+                        Game::factory()->create([
+                            'home_team_id' => $home_team->id(),
+                            'away_team_id' => $away_team->id(),
+                            'start' => now()->subDays(rand(1, 30)),
+                            'finished' => true,
+                        ]);
+                    }
+                }
+            }
+        }
+    }
+
+    function create_events()
+    {
+        $num_of_goals = rand(1, 5);
+        $num_of_own_goals = rand(0, 2);
+        $num_of_yellow_cards = rand(1, 5);
+        $num_of_red_cards = rand(0, 2);
+
+        $games = Game::all();
+        $players = Player::all();
+        foreach ($games as $game) {
+            // Gólok
+            for ($i = 0; $i < $num_of_goals; $i++) {
+                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
+                $player = $players->where('team_id', $team->id())->random();
+                Event::factory()->create([
+                    'game_id' => $game->id(),
+                    'player_id' => $player->id(),
+                    'type' => 'goal',
+                ]);
+            }
+
+            // Öngólok
+            for ($i = 0; $i < $num_of_own_goals; $i++) {
+                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
+                $player = $players->where('team_id', $team->id())->random();
+                Event::factory()->create([
+                    'game_id' => $game->id(),
+                    'player_id' => $player->id(),
+                    'type' => 'own_goal',
+                ]);
+            }
+
+            // Sárga lapok
+            for ($i = 0; $i < $num_of_yellow_cards; $i++) {
+                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
+                $player = $players->where('team_id', $team->id())->random();
+                Event::factory()->create([
+                    'game_id' => $game->id(),
+                    'player_id' => $player->id(),
+                    'type' => 'yellow_card',
+                ]);
+            }
+
+            // Piros lapok
+            for ($i = 0; $i < $num_of_red_cards; $i++) {
+                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
+                $player = $players->where('team_id', $team->id())->random();
+                Event::factory()->create([
+                    'game_id' => $game->id(),
+                    'player_id' => $player->id(),
+                    'type' => 'red_card',
+                ]);
+            }
+        }
+    }
+
+
+    public function run(): void
+    {
+        $num_of_users = 10;
+        $num_of_teams = 10;
+
+        // Felhasználók létrehozása
+        $this->create_uses($num_of_users);
 
         // Csapatok létrehozása
         $teams = Team::factory($num_of_teams)->create();
@@ -47,31 +152,10 @@ class DatabaseSeeder extends Seeder
         }
 
         // Mérkőzések létrehozása
-        foreach ($teams as $home_team) {
-            foreach ($teams as $away_team) {
-                if ($home_team->id() != $away_team->id()) {
-                    Game::factory()->create([
-                        'home_team_id' => $home_team->id(),
-                        'away_team_id' => $away_team->id(),
-                    ]);
-                }
-            }
-        }
+        $this->create_games();
 
         // Események létrehozása
-        $games = Game::all();
-        $players = Player::all();
-        foreach ($games as $game) {
-            $num_of_events = rand(5, 10);
-            for ($i = 0; $i < $num_of_events; $i++) {
-                $team = rand(true, false) ? $game->homeTeam : $game->awayTeam;
-                $player = $players->where('team_id', $team->id())->random();
-                Event::factory()->create([
-                    'game_id' => $game->id(),
-                    'player_id' => $player->id(),
-                ]);
-            }
-        }
+        $this->create_events();
 
         // Kedvenc csapatok hozzárendelése a felhasználókhoz
         $users = User::all();

@@ -32,7 +32,7 @@ class EventFactory extends Factory
         // $player = Player::where('team_id', $team->id())->get()->random();
 
         return [
-            'type' => $this->faker->randomElement(['goal', 'goal', 'goal', 'owngoal', 'yellowcard', 'redcard']),
+            'type' => $this->faker->randomElement(['goal', 'goal', 'goal', 'own_goal', 'yellow_card', 'red_card']),
             'minute' => $this->faker->numberBetween(1, 90),
         ];
 

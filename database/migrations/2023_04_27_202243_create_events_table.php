@@ -20,7 +20,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['goal', 'owngoal', 'yellowcard', 'redcard']);
+            $table->enum('type', ['goal', 'own_goal', 'yellow_card', 'red_card']);
             $table->integer('minute');
             $table->timestamps();
             $table->unsignedBigInteger('game_id');

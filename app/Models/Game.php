@@ -46,9 +46,9 @@ class Game extends Model
                 $home_team_score += 1;
             } elseif ($event_type == 'goal' && $team_id == $away_team_id) {
                 $away_team_score += 1;
-            } elseif ($event_type == 'owngoal' && $team_id == $home_team_id) {
+            } elseif ($event_type == 'own_goal' && $team_id == $home_team_id) {
                 $away_team_score += 1;
-            } elseif ($event_type == 'owngoal' && $team_id == $away_team_id) {
+            } elseif ($event_type == 'own_goal' && $team_id == $away_team_id) {
                 $home_team_score += 1;
             }
         }
