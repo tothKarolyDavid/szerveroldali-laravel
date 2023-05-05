@@ -9,6 +9,8 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['game_id', 'minute', 'type', 'player_id'];
+
     public function id() {
         return $this->id;
     }

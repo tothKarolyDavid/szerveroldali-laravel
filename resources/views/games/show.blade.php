@@ -128,37 +128,50 @@
                     <h3>Új esemény létrehozása</h3>
                     <form action="{{ route('events.store') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
+                        <div class="mb-3 form-group">
                             <label for="minute" class="form-label">Hányadik játékpercben történt az esemény?</label>
-                            <input type="number" class="form-control" id="minute" name="minute" min="1"
-                                max="90" required>
+                            <input type="number" class="form-control @error('minute') is-invalid @enderror" id="minute"
+                                name="minute" value="{{ old('minute') ? old('minute') : '' }}">
+                            @error('minute')
+                                <div class="invalid-feedback">
+                                    Nem megfelelő játékperc!
+                                </div>
+                            @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 form-group">
                             <label for="type" class="form-label">Milyen típusú esemény történt?</label>
-                            <select class="form-select" id="type" name="type" required>
-                                <option value="goal">Gól</option>
-                                <option value="own_goal">Öngól</option>
-                                <option value="yellow_card">Sárga lap</option>
-                                <option value="red_card">Piros lap</option>
+                            <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
+                                <option value="goal" @if (old('type') == 'goal') selected @endif>Gól</option>
+                                <option value="own_goal" @if (old('type') == 'own_goal') selected @endif>Öngól</option>
+                                <option value="yellow_card" @if (old('type') == 'yellow_card') selected @endif>Sárga lap</option>
+                                <option value="red_card" @if (old('type') == 'red_card') selected @endif>Piros lap</option>
                             </select>
+                            @error('type')
+                                <div class="invalid-feedback">
+                                    Nem megfelelő esemény típus!
+                                </div>
+                            @enderror
                         </div>
-                        <div class="mb-3">
+
+                        <div class="mb-3 form-group">
                             <label for="player" class="form-label">Ki az érintett játékos?</label>
-                            <select class="form-select" id="player" name="player" required>
+                            <select class="form-select @error('player') is-invalid @enderror" id="player" name="player">
                                 @php
                                     $players = $game->homeTeam->players->merge($game->awayTeam->players);
-                                    // csapat és mezszám szerint rendezés
-                                    $players = $players->sortBy([
-                                        ['team_id', 'asc'],
-                                        ['number', 'asc'],
-                                    ]);
+                                    $players = $players->sortBy([['team_id', 'asc'], ['number', 'asc']]);
                                 @endphp
 
                                 @foreach ($players as $player)
-                                    <option value="{{ $player->id }}">{{ $player->name }} ({{ $player->team->name }}
+                                    <option @if (old('player') == $player->id) selected @endif value="{{ $player->id }}">
+                                        {{ $player->name }} ({{ $player->team->name }}
                                         , {{ $player->number }})</option>
                                 @endforeach
                             </select>
+                            @error('player')
+                                <div class="invalid-feedback">
+                                    Nem létező játékos!
+                                </div>
+                            @enderror
                         </div>
                         <input type="hidden" name="game" value="{{ $game->id }}">
                         <button type="submit" class="btn btn-primary">Mentés</button>
