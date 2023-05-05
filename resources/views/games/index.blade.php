@@ -84,10 +84,6 @@
                                             {{ $games_in_progress->count() }}
                                         </li>
                                         <li>
-                                            <span class="fa-li"><i class=""></i></span>Lejátszott mérkőzések:
-                                            {{ $games_finished->count() }}
-                                        </li>
-                                        <li>
                                             <span class="fa-li"><i class="t"></i></span>Jövőbeli mérkőzések:
                                             {{ $games_in_future->count() }}
                                         </li>

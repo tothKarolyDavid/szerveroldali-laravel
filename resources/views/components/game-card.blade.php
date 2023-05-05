@@ -56,7 +56,7 @@
                 <div class="row">
                     <div>
                         <a href="{{ route('games.show', $game->id) }}" class="btn btn-primary">
-                            <span>View post</span> <i class="fas fa-angle-right"></i>
+                            <span>Részletek</span> <i class="fas fa-angle-right"></i>
                         </a>
                         <p class="card-text float-end"><small class="text-muted"><i class="far fa-calendar-alt"></i>
                                 Meccs időpontja: {{ $game->start }}</small></p>
@@ -113,7 +113,7 @@
                     <div class="row">
                         <div>
                             <a href="{{ route('games.show', $game->id) }}" class="btn btn-primary">
-                                <span>View post</span> <i class="fas fa-angle-right"></i>
+                                <span>Részletek</span> <i class="fas fa-angle-right"></i>
                             </a>
                             <p class="card-text float-end"><small class="text-muted"><i class="far fa-calendar-alt"></i>
                                     Meccs időpontja: {{ $game->start }}</small></p>

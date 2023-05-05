@@ -16,7 +16,7 @@
             <div class="col-12 col-md-8">
 
                 {{-- TODO: Link --}}
-                <a href="{{ route('games.index') }}"><i class="fas fa-long-arrow-alt-left"></i> Back to the homepage</a>
+                <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
 
                 <h1>{{ $title }}</h1>
             </div>
