@@ -48,8 +48,11 @@ class GameController extends Controller
      */
     public function show(string $id)
     {
+        $game = Game::findOrFail($id);
         return view('games.show', [
-            'game' => Game::findOrFail($id),
+            'game' => $game,
+            'title' => $game->homeTeam->name . ' vs ' . $game->awayTeam->name,
+            'events' => $game->events->sortBy('minute', SORT_REGULAR, false),
         ]);
     }
 

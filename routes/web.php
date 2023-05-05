@@ -27,7 +27,8 @@ Route::resource('leaderboard', LeaderboardController::class);
 
 Route::resource('favorites', FavoritesController::class);
 
-Route::resource('/', GameController::class);
+Route::resource('/', GameController::class)->name('index', 'games.index');
+
 
 // Route::get('/posts/create', function () {
 //     return view('posts.create');
