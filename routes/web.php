@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Game;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,12 @@ Route::resource('leaderboard', LeaderboardController::class);
 
 Route::resource('favorites', FavoritesController::class);
 
+Route::resource('events', EventController::class);
 
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 
 Route::get('/', function () {
     return view('home');

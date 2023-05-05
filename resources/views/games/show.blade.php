@@ -112,5 +112,61 @@
                 Nincsen megjeleítendő esemény
             @endforelse
         </div>
+
+        {{--
+            Admin from Új esemény létrehozásához
+
+            Ehhez meg kell adnia a következőket: hányadik játékpercben (1 és 90 közötti egész), milyen típusú esemény (gól, öngól, sárga lap, piros lap) történt és ki az érintett játékos.
+            Alapvetően nem szükséges külön kiválasztani (vagy tárolni) a csapatot, hiszen azt a játékos személye egyértelműen meghatározza.
+            Az érintett játékost egy listából (pl. legördülő menü vagy rádiógombok) lehet kiválasztani, amely csapat és mezszám szerint rendezett.
+
+        --}}
+
+        @auth
+            @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
+                <div class="mt-3">
+                    <h3>Új esemény létrehozása</h3>
+                    <form action="{{ route('events.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="minute" class="form-label">Hányadik játékpercben történt az esemény?</label>
+                            <input type="number" class="form-control" id="minute" name="minute" min="1"
+                                max="90" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Milyen típusú esemény történt?</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="goal">Gól</option>
+                                <option value="own_goal">Öngól</option>
+                                <option value="yellow_card">Sárga lap</option>
+                                <option value="red_card">Piros lap</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="player" class="form-label">Ki az érintett játékos?</label>
+                            <select class="form-select" id="player" name="player" required>
+                                @php
+                                    $players = $game->homeTeam->players->merge($game->awayTeam->players);
+                                    // csapat és mezszám szerint rendezés
+                                    $players = $players->sortBy([
+                                        ['team_id', 'asc'],
+                                        ['number', 'asc'],
+                                    ]);
+                                @endphp
+
+                                @foreach ($players as $player)
+                                    <option value="{{ $player->id }}">{{ $player->name }} ({{ $player->team->name }}
+                                        , {{ $player->number }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="hidden" name="game" value="{{ $game->id }}">
+                        <button type="submit" class="btn btn-primary">Mentés</button>
+                    </form>
+                </div>
+            @endif
+        @endauth
+
+
     </div>
 @endsection
