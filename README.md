@@ -72,7 +72,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
     - csapatok
     - tabella
     - kedvenceim
-- [ ] **Mérkőzések oldal** (4 pont)
+- [x] **Mérkőzések oldal** (4 pont)
   - Ezt az oldalt bárki (vendég, bejelentkezett, admin) megtekintheti.
   - Az oldalon megjelenik az összes mérkőzés: a mérkőzésben részt vevő két csapat neve (vagy rövidítése), logója (ha van feltöltve, különben placeholder kép) és a meccs kezdési időpontja.
   - A mérkőzések alapvetően időrendi sorrendben jelennek meg, de külön szekcióba ki kell emelni az éppen folyamatban lévő meccseket (amelyek kezdési időpontja elmúlt, de nincsenek még befejezettként jelölve).

@@ -61,9 +61,6 @@
                                 Meccs időpontja: {{ $game->start }}</small></p>
                     </div>
                 </div>
-                {{-- TODO: Link --}}
-
-
             </div>
         </div>
     @empty
