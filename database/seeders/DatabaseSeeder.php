@@ -83,7 +83,8 @@ class DatabaseSeeder extends Seeder
         $num_of_yellow_cards = rand(1, 5);
         $num_of_red_cards = rand(0, 2);
 
-        $games = Game::all();
+        $games = Game::all()->where('finished', true)->union(Game::all()->where('finished', false)->where('start', '<', now()));
+
         $players = Player::all();
         foreach ($games as $game) {
             // Gólok

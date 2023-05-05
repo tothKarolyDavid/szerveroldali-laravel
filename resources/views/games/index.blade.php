@@ -41,7 +41,7 @@
 
                 <div class="d-flex justify-content-center">
                     {{-- TODO: Pagination Bootsrap 5 --}}
-
+                    {!! $games_finished->links() !!}
                 </div>
 
             </div>

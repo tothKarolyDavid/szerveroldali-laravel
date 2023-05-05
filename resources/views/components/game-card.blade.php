@@ -30,20 +30,20 @@
                                 <h5 class="card-title">{{ $game->awayTeam->shortname }}</h5>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col text-center">
-                                <h5 class="card-title">{{ $scores['home_team_score'] }}</h5>
-                            </div>
-                            <div class="col text-center">
-                                -
-                            </div>
-                            <div class="col text-center">
-                                <h5 class="card-title">{{ $scores['away_team_score'] }}</h5>
-                            </div>
-                        </div>
 
-
-
+                        @if ($type != 'in_future')
+                            <div class="row">
+                                <div class="col text-center">
+                                    <h5 class="card-title">{{ $scores['home_team_score'] }}</h5>
+                                </div>
+                                <div class="col text-center">
+                                    -
+                                </div>
+                                <div class="col text-center">
+                                    <h5 class="card-title">{{ $scores['away_team_score'] }}</h5>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col">
@@ -54,7 +54,7 @@
             <div class="card-footer">
                 <div class="row">
                     <div>
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('games.show', $game->id) }}" class="btn btn-primary">
                             <span>View post</span> <i class="fas fa-angle-right"></i>
                         </a>
                         <p class="card-text float-end"><small class="text-muted"><i class="far fa-calendar-alt"></i>
@@ -62,6 +62,7 @@
                     </div>
                 </div>
                 {{-- TODO: Link --}}
+
 
             </div>
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
-
+use Illuminate\Contracts\Pagination\Paginator;
 
 class GameController extends Controller
 {
@@ -17,11 +17,13 @@ class GameController extends Controller
 
         $games_in_progress = $games->where('finished', false)->where('start', '<', now());
         $games_in_the_future = $games->where('finished', false)->where('start', '>', now());
-        $games_finished = $games->where('finished', true);
+        // $games_finished =  $games->where('finished', true)->sortBy('start', SORT_REGULAR, true);
+        $games_finished =  Game::where('finished', true)->orderBy('start', 'desc')->paginate(10);
 
         return view('games.index', [
+            // paginate results
             'games_in_progress' => $games_in_progress,
-            'games_in_future' => $games_in_the_future,
+            'games_in_future' =>  $games_in_the_future,
             'games_finished' => $games_finished,
         ]);
     }
@@ -47,7 +49,9 @@ class GameController extends Controller
      */
     public function show(string $id)
     {
-        return view('games.show');
+        return view('games.show', [
+            'game' => Game::findOrFail($id),
+        ]);
     }
 
     /**
