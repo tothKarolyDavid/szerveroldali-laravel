@@ -108,7 +108,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - A csapatrészletező oldalon két fontos információ kell megjelenjen:
     1. A csapat mérkőzései időrendi sorrendben. (Természetesen itt is fel kell tüntetni az eredményt a folyamatban lévő és befejezett meccsek esetében.)
     2. A csapatban lévő összes játékos adatai: neve, születési dátuma, statisztikái (hány gólt, öngólt rúgott, illetve hány sárga és piros lapot kapott).
-- [ ] **Új csapat hozzáadása** (4 pont)
+- [x] **Új csapat hozzáadása** (4 pont)
   - Az **admin** tudjon új csapatot felvenni a bajnokságba. Ehhez meg kell adjon minden kötelező adatot, de logó feltöltése opcionális!
   - A logóhoz tartozó képfeltöltés **ténylegesen** legyen fájlfeltöltés, tehát nem elég csupán a kép nevét vagy egy külső URL-t eltárolni!
 - [ ] **Meglévő csapat módosítása** (4 pont)

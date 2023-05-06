@@ -40,11 +40,9 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $valid_team_ids = Game::all()->pluck('home_team_id')->merge(Game::all()->pluck('away_team_id'));
-
         $request->validate([
-            'home_team_id' => ['required', 'integer', 'different:away_team_id', 'in:' . $valid_team_ids->implode(',')],
-            'away_team_id' => ['required', 'integer', 'different:home_team_id', 'in:' . $valid_team_ids->implode(',')],
+            'home_team_id' => ['required', 'integer', 'different:away_team_id'],
+            'away_team_id' => ['required', 'integer', 'different:home_team_id'],
             'start' => ['required', 'date', 'after:now'],
         ]);
 

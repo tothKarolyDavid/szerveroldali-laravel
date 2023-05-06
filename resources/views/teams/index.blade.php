@@ -11,14 +11,14 @@
                 <div class="float-lg-end">
                     {{-- TODO: Links, policy --}}
 
-                    <a href="{{ route('teams.create') }}" role="button" class="btn btn-sm btn-success mb-1">
-                        <i class="fas fa-plus-circle"></i>
-                        Új csapat
-                    </a>
-
-                    <a href="#" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i>
-                        Create category</a>
-
+                    @auth
+                        @if (Auth::user()->is_admin)
+                            <a href="{{ route('teams.create') }}" role="button" class="btn btn-sm btn-success mb-1">
+                                <i class="fas fa-plus-circle"></i>
+                                Új csapat
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </div>
@@ -36,11 +36,11 @@
         --}}
 
         <div class="row mt-3">
-            <div class="col-12 col-lg-9">
+            <div class="col-12">
                 <div class="row g-0">
                     @forelse ($teams as $team)
                         @php
-                            $team_logo = ($team->image != null) ? asset('storage/' . $team->image) : asset('images/default_game_cover.jpg');
+                            $team_logo = $team->image != null ? url($team->image) : asset('images/default_game_cover.jpg');
                         @endphp
 
                         <div class="card mt-3 me-3" style="width: 18rem;">

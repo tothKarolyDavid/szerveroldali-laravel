@@ -12,6 +12,8 @@ class Player extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'number', 'birthdate', 'team_id'];
+
     public function id() {
         return $this->id;
     }

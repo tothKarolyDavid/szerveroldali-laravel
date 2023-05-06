@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
 {
@@ -24,7 +25,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view('teams.create');
     }
 
     /**
@@ -32,7 +33,26 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:teams'],
+            'short_name' => ['required', 'string', 'max:4', 'unique:teams'],
+        ]);
+
+        if ($request->cover_image) {
+            $path = $request->file('cover_image')->store('public/teams');
+            $team = Team::create([
+                'name' => $request->name,
+                'shortname' => $request->short_name,
+                'image' => Storage::url($path),
+            ]);
+        } else {
+            $team = Team::create([
+                'name' => $request->name,
+                'shortname' => $request->short_name,
+            ]);
+        }
+
+        return redirect()->route('teams.show', $team->id);
     }
 
     /**

@@ -9,6 +9,8 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'shortname', 'image'];
+
     public function id() {
         return $this->id;
     }

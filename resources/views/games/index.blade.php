@@ -11,13 +11,14 @@
                 <div class="float-lg-end">
                     {{-- TODO: Links, policy --}}
 
-                    <a href="{{ route('games.create') }}" role="button" class="btn btn-sm btn-success mb-1">
-                        <i class="fas fa-plus-circle"></i>
-                        Új mérkőzés
-                    </a>
-
-                    <a href="#" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i>
-                        Create category</a>
+                    @auth
+                        @if (Auth::user()->is_admin)
+                            <a href="{{ route('games.create') }}" role="button" class="btn btn-sm btn-success mb-1">
+                                <i class="fas fa-plus-circle"></i>
+                                Új mérkőzés
+                            </a>
+                        @endif
+                    @endauth
 
                 </div>
             </div>
