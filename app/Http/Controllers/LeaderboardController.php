@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class LeaderboardController extends Controller
 {
@@ -11,7 +12,14 @@ class LeaderboardController extends Controller
      */
     public function index()
     {
-        return view('leaderboard');
+        $teams = Team::all()->sortBy('name');
+        $teams = $teams->sortByDesc(function ($team, $key) {
+            return $team->num_of_points() . $team->goal_difference();
+        });
+
+        return view('leaderboard', [
+            'teams' => $teams,
+        ]);
     }
 
     /**

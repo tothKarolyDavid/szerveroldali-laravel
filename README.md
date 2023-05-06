@@ -118,7 +118,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Az **admin** tudjon új játékost felvenni a csapatba annak részletező oldaláról indulva. Ehhez meg kell adjon minden kötelező adatot, tehát a játékos mezszámát, nevét és születési dátumát.
 - [x] **Meglévő játékos törlése** (1 pont)
   - Az **admin** tudjon törölni olyan játékosokat, akikhez nem tartozik még esemény egy meccsen sem. Tehát azokat a játékosokat, akik letettek már valamit az asztalra, nem töröljük a jegyzőkönyvekből!
-- [ ] **Tabella oldal** (4 pont)
+- [x] **Tabella oldal** (4 pont)
   - A tabella oldalon megjelenik a bajnokságban résztvevő összes csapat az elért pontszámuk szerinti sorrendben.
   - Egy csapat pontszámát a befejezett mérkőzései alapján kell számítani a következő módon:
     - nyert mérkőzés: +3 pont

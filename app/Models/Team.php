@@ -29,4 +29,39 @@ class Team extends Model
     {
         return $this->hasMany(Game::class, 'away_team_id');
     }
+
+    public function num_of_won_games()
+    {
+        return $this->homeGames()->where('home_team_score', '>', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '>', 'home_team_score')->count();
+    }
+
+    public function num_of_lost_games()
+    {
+        return $this->homeGames()->where('home_team_score', '<', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '<', 'home_team_score')->count();
+    }
+
+    public function num_of_draw_games()
+    {
+        return $this->homeGames()->where('home_team_score', '=', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '=', 'home_team_score')->count();
+    }
+
+    public function num_of_scored_goals()
+    {
+        return $this->homeGames()->sum('home_team_score') + $this->awayGames()->sum('away_team_score');
+    }
+
+    public function num_of_conceded_goals()
+    {
+        return $this->homeGames()->sum('away_team_score') + $this->awayGames()->sum('home_team_score');
+    }
+
+    public function goal_difference()
+    {
+        return $this->num_of_scored_goals() - $this->num_of_conceded_goals();
+    }
+
+    public function num_of_points()
+    {
+        return $this->num_of_won_games() * 3 + $this->num_of_draw_games();
+    }
 }
