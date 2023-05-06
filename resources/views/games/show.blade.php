@@ -25,16 +25,29 @@
                     @auth
                         @if (Auth::user()->is_admin)
                             <a role="button" class="btn btn-sm btn-primary" href="{{ route('games.edit', $game->id) }}"
-                                    class="far fa-edit"></i>
+                                role="button">
+                                <i class="far fa-edit"></i>
                                 Mérkőzés szerkesztése
                             </a>
 
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal">
-                                <i class="far fa-trash-alt">
-                                    <span></i>
-                                Mérkőzés törlése
-                                </span>
-                            </button>
+                            @if($game->events->count() == 0)
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal">
+                                    <i class="far fa-trash-alt">
+                                        <span></i>
+                                    Mérkőzés törlése
+                                    </span>
+                                </button>
+
+                            @else
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal" disabled>
+                                    <i class="far fa-trash-alt">
+                                        <span></i>
+                                    Mérkőzés törlése
+                                    </span>
+                                </button>
+
+
+                            @endif
                         @endif
                     @endauth
                 </div>
@@ -47,22 +60,24 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Confirm delete</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Törlés megerősítése</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        {{-- TODO: Title --}}
-                        Are you sure you want to delete post <strong>N/A</strong>?
+                        Biztosan törölni szeretnéd ezt a mérkőzést?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
                         <button type="button" class="btn btn-danger"
                             onclick="document.getElementById('delete-post-form').submit();">
-                            Yes, delete this post
+                            Igen, törölni szeretném ezt a mérkőzést
                         </button>
 
                         {{-- TODO: Route, directives --}}
-                        <form id="delete-post-form" action="#" method="POST" class="d-none">
+                        <form id="delete-post-form" action="{{ route('games.destroy', $game->id) }}" method="POST"
+                            class="d-none">
+                            @csrf
+                            @method('DELETE')
 
                         </form>
                     </div>

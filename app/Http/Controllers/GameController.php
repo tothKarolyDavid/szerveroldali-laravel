@@ -109,13 +109,12 @@ class GameController extends Controller
             'start' => date('Y-m-d H:i:s', strtotime($request->start)),
         ]);
 
-        // ha megvaltozott egyik csapat, akkor a hozza tartozo esemenyeket toroljuk
-        if ($game->home_team_id != $request->home_team_id) {
-            $game->events()->where('team_id', $game->home_team_id)->delete();
+
+        if ($game->homeTeam->id != $request->home_team_id || $game->awayTeam->id != $request->away_team_id) {
+           $game->events()->delete();
         }
-        if ($game->away_team_id != $request->away_team_id) {
-            $game->events()->where('team_id', $game->away_team_id)->delete();
-        }
+
+
 
 
         $game->update([
@@ -125,7 +124,7 @@ class GameController extends Controller
             'start' => $request->start,
         ]);
 
-        return redirect()->route('games.show', ['game' => $game->id]);
+        return redirect()->route('games.show', $game->id);
     }
 
     /**
@@ -133,6 +132,8 @@ class GameController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $game->delete();
+        return redirect()->route('games.index');
     }
 }

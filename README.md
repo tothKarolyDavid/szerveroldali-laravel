@@ -97,7 +97,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Az egyes mezőkre jellemző alapvető validációs feltételek mellett ellenőrizni kell, hogy a kezdés időpontja jövőbeli, illetve a hazai és vendég csapat nem azonos.
 - [x] **Meglévő mérkőzés módosítása** (3 pont)
   - Az **admin** felhasználó módosíthatja is a meglévő mérkőzéseket.
-- [ ] **Mérkőzés törlése** (1 pont)
+- [x] **Mérkőzés törlése** (1 pont)
   - Az **admin** felhasználó törölheti is a meglévő mérkőzéseket, amennyiben még nincs esemény rögzítve az adott meccshez!
 - [ ] **Csapatok listája** (2 pont)
   - Ezt az oldalt bárki (vendég, bejelentkezett, admin) megtekintheti.
