@@ -15,14 +15,6 @@
 
             </div>
         </div>
-
-        {{--
-            Egy csapat pontszámát a befejezett mérkőzései alapján kell számítani a következő módon:
-                nyert mérkőzés: +3 pont
-                döntetlen: +1 pont
-                vesztes mérkőzés: +0 pont
-        --}}
-
         <div class="row mt-3">
             <div class="col-12">
                 <div class="row g-0">
@@ -53,6 +45,8 @@
                                                 </div>
                                                 <div class="col text-center">
                                                     <h5>Elért pontszám</h5>
+                                                </div>
+                                                <div class="col text-center">
                                                 </div>
                                             </div>
                                         </div>
@@ -95,6 +89,26 @@
                                             </div>
                                             <div class="col text-center">
                                                 <h5>{{ $points }}</h5>
+                                            </div>
+                                            <div class="col text-center">
+                                                @auth
+                                                    @if (Auth::user()->is_favorite_team($team->id))
+                                                        <form action="{{ route('teams.unfavorite', $team->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fas fa-heart"></i>
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('teams.favorite', $team->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="far fa-heart"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>

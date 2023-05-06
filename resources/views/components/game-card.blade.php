@@ -75,8 +75,7 @@
             <div class="card mb-3" style="">
                 <div class="row g-0">
                     <div class="col">
-                        <img src="{{ $home_team_logo }}" class="img-fluid rounded-start"
-                            alt="" width="100">
+                        <img src="{{ $home_team_logo }}" class="img-fluid rounded-start" alt="" width="100">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -105,11 +104,64 @@
                                     </div>
                                 </div>
                             @endif
+
+                            @auth
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h5 class="card-title">
+                                            @if (Auth::user()->is_favorite_team($game->homeTeam->id))
+                                                <form action="{{ route('teams.unfavorite', $game->homeTeam->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fas fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('teams.favorite', $game->homeTeam->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="far fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </h5>
+                                    </div>
+                                    <div class="col text-center">
+
+                                    </div>
+                                    <div class="col text-center">
+                                        <h5 class="card-title">
+                                            @if (Auth::user()->is_favorite_team($game->awayTeam->id))
+                                                <form action="{{ route('teams.unfavorite', $game->awayTeam->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fas fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('teams.favorite', $game->awayTeam->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="far fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+
+
+                            @endauth
+
+
+
                         </div>
                     </div>
                     <div class="col">
-                        <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end"
-                            alt="" width="100">
+                        <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end" alt=""
+                            width="100">
                     </div>
                 </div>
                 <div class="card-footer">

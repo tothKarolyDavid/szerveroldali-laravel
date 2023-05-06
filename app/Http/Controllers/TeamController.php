@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
@@ -126,5 +128,26 @@ class TeamController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function unfavorite(string $id)
+    {
+        $team = Team::findOrFail($id);
+        $user = auth()->user();
+
+        $user->teams()->detach($team->id);
+
+        // redirect to the previous page
+        return redirect()->back();
+    }
+
+    public function favorite(string $id)
+    {
+        $team = Team::findOrFail($id);
+        $user = auth()->user();
+
+        $user->teams()->attach($team->id);
+
+        return redirect()->back();
     }
 }

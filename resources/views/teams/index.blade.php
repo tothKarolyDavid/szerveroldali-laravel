@@ -30,14 +30,9 @@
             </div>
         </div>
 
-        {{--
-            Az oldalon megjelenik az összes csapat neve, rövidítése és logója (ha van feltöltve, különben placeholder kép).
-            Az egyes csapatokra kattintva továbblépünk az adott csapat részletező oldalára.
-        --}}
-
         <div class="row mt-3">
             <div class="col-12">
-                <div class="row g-0">
+                <div class="row g-0 d-flex justify-content-center">
                     @forelse ($teams as $team)
                         @php
                             $team_logo = $team->image != null ? url($team->image) : asset('images/default_game_cover.jpg');
@@ -46,9 +41,29 @@
                         <div class="card mt-3 me-3" style="width: 18rem;">
                             <img src="{{ $team_logo }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $team->name }}</h5>
-                                <p class="card-text">{{ $team->shortname }}</p>
-                                <a href="{{ route('teams.show', $team->id) }}" class="btn btn-primary">Részletek</a>
+                                <h5 class="card-title align-text-bottom">{{ $team->name }}</h5>
+                                <p class="card-text align-text-bottom">{{ $team->shortname }}</p>
+                                <a href="{{ route('teams.show', $team->id) }}" class="btn btn-primary align-bottom-bottom">Részletek</a>
+                                <div class="text-center float-end">
+                                    @auth
+                                        @if (Auth::user()->is_favorite_team($team->id))
+                                            <form action="{{ route('teams.unfavorite', $team->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('teams.favorite', $team->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="far fa-heart"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endauth
+                                </div>
                             </div>
                         </div>
                     @empty

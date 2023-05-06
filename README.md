@@ -125,7 +125,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
     - döntetlen: +1 pont
     - vesztes mérkőzés: +0 pont
   - Ha két csapat pontszáma a fentiek szerint azonos, akkor az kerüljön a sorrendben előrébb, akinek jobb a gólkülönbsége (szerzett gólokból kivonjuk a kapott gólok számát). Ha még mindig egyenlőség van, akkor a betűrendben előbb lévő csapat kerüljön feljebb a rangsorban.
-- [ ] **Kedvenceim oldal** (4 pont)
+- [x] **Kedvenceim oldal** (4 pont)
   - Ez az oldal csak **bejelentkezett** felhasználók számára elérhető.
   - A nem bejelentkezett felhasználóknak ajánljuk fel a bejelentkezés vagy regisztráció lehetőségét, amely természetesen működjön is megfelelően!
   - A bejelentkezett felhasználók minden olyan helyen, ahol csapatnév vagy rövidítés szerepel (pl. meccsek, csapatok, tabella) kedvencnek tudják jelölni a csapatukat egy gombra vagy ikonra kattintva.

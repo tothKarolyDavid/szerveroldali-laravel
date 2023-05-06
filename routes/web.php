@@ -32,6 +32,13 @@ Route::resource('events', EventController::class);
 
 Route::resource('players', PlayerController::class);
 
+// route('teams.unfavorite', $team->id) support POST and DELETE
+Route::delete('/teams/{team}/unfavorite', [TeamController::class, 'unfavorite'])->name('teams.unfavorite');
+
+// route('teams.favorite', $team->id) support POST and DELETE
+Route::post('/teams/{team}/favorite', [TeamController::class, 'favorite'])->name('teams.favorite');
+
+
 
 
 

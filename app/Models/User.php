@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function teams() {
         return $this->belongsToMany(Team::class)->withTimestamps();
     }
+
+    public function is_favorite_team(string $team_id) {
+        return $this->teams()->where('team_id', $team_id)->exists();
+    }
 }

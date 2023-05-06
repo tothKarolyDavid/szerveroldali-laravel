@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Game;
 
 class FavoritesController extends Controller
 {
@@ -11,7 +12,23 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-        return view('favorites');
+        // games that are favorites of the user
+        $favorite_team_ids = auth()->user()->teams()->pluck('team_id');
+        $games = Game::whereIn('home_team_id', $favorite_team_ids)
+            ->orWhereIn('away_team_id', $favorite_team_ids)
+            ->orderBy('start', 'asc')
+            ->get();
+
+        $games_in_progress = $games->where('finished', false)->where('start', '<', now()->addDays(1));
+        $games_in_the_future = $games->where('finished', false)->where('start', '>', now());
+        $games_finished = $games->where('finished', true);
+
+        return view('favorites', [
+            'games_in_progress' => $games_in_progress,
+            'games_in_future' =>  $games_in_the_future,
+            'games_finished' => $games_finished,
+            'favorite_teams' => auth()->user()->teams,
+        ]);
     }
 
     /**

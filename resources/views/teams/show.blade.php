@@ -16,6 +16,9 @@
                 <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
 
                 <h1>{{ $team->name }}</h1>
+                <div class="text-center float-end">
+
+                </div>
             </div>
 
             <div class="col-12 col-md-4">
@@ -30,6 +33,25 @@
                                 Csapat szerkesztése
                             </a>
                         @endif
+
+                        <div class="float-end ms-3">
+                            @if (Auth::user()->is_favorite_team($team->id))
+                                <form action="{{ route('teams.unfavorite', $team->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ route('teams.favorite', $team->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
                     @endauth
                 </div>
             </div>
