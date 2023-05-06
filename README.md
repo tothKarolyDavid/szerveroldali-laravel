@@ -95,7 +95,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
 - [x] **Új mérkőzés létrehozása** (3 pont)
   - Az **admin** felhasználó új mérkőzéseket is kiírhat.
   - Az egyes mezőkre jellemző alapvető validációs feltételek mellett ellenőrizni kell, hogy a kezdés időpontja jövőbeli, illetve a hazai és vendég csapat nem azonos.
-- [ ] **Meglévő mérkőzés módosítása** (3 pont)
+- [x] **Meglévő mérkőzés módosítása** (3 pont)
   - Az **admin** felhasználó módosíthatja is a meglévő mérkőzéseket.
 - [ ] **Mérkőzés törlése** (1 pont)
   - Az **admin** felhasználó törölheti is a meglévő mérkőzéseket, amennyiben még nincs esemény rögzítve az adott meccshez!

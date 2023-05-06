@@ -22,13 +22,21 @@
                 <div class="float-lg-end">
 
                     {{-- TODO: Links, policy --}}
-                    <a role="button" class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> Edit post</a>
+                    @auth
+                        @if (Auth::user()->is_admin)
+                            <a role="button" class="btn btn-sm btn-primary" href="{{ route('games.edit', $game->id) }}"
+                                    class="far fa-edit"></i>
+                                Mérkőzés szerkesztése
+                            </a>
 
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal"><i
-                            class="far fa-trash-alt">
-                            <span></i> Delete post</span>
-                    </button>
-
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal">
+                                <i class="far fa-trash-alt">
+                                    <span></i>
+                                Mérkőzés törlése
+                                </span>
+                            </button>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </div>
@@ -77,7 +85,9 @@
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="finished" value="1">
-                            <button type="submit" class="btn btn-sm btn-success"><h5>Mérkőzés lezárása</h5></button>
+                            <button type="submit" class="btn btn-sm btn-success">
+                                <h5>Mérkőzés lezárása</h5>
+                            </button>
                         </form>
                     </div>
                 @endif

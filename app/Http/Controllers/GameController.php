@@ -79,7 +79,15 @@ class GameController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $game = Game::findOrFail($id);
+        return view('games.edit', [
+            'game' => $game,
+            'home_team_id' => $game->home_team_id,
+            'away_team_id' => $game->away_team_id,
+            'start' => $game->start,
+            'finished' => $game->finished,
+            'id' => $game->id,
+        ]);
     }
 
     /**
@@ -88,14 +96,35 @@ class GameController extends Controller
     public function update(Request $request, string $id)
     {
         $game = Game::findOrFail($id);
+        $valid_team_ids = Game::all()->pluck('home_team_id')->merge(Game::all()->pluck('away_team_id'));
 
-        $game->update([
-            'home_team_score' => $request->home_team_score,
-            'away_team_score' => $request->away_team_score,
-            'finished' => $request->finished,
+        $request->validate([
+            'home_team_id' => ['required', 'integer', 'different:away_team_id', 'in:' . $valid_team_ids->implode(',')],
+            'away_team_id' => ['required', 'integer', 'different:home_team_id', 'in:' . $valid_team_ids->implode(',')],
+            'finished' => ['required', 'boolean'],
+            'start' => ['required', 'date'],
         ]);
 
-        // redirect to the game page
+        $request->merge([
+            'start' => date('Y-m-d H:i:s', strtotime($request->start)),
+        ]);
+
+        // ha megvaltozott egyik csapat, akkor a hozza tartozo esemenyeket toroljuk
+        if ($game->home_team_id != $request->home_team_id) {
+            $game->events()->where('team_id', $game->home_team_id)->delete();
+        }
+        if ($game->away_team_id != $request->away_team_id) {
+            $game->events()->where('team_id', $game->away_team_id)->delete();
+        }
+
+
+        $game->update([
+            'home_team_id' => $request->home_team_id,
+            'away_team_id' => $request->away_team_id,
+            'finished' => $request->finished,
+            'start' => $request->start,
+        ]);
+
         return redirect()->route('games.show', ['game' => $game->id]);
     }
 

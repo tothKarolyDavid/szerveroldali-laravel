@@ -71,15 +71,6 @@
                 </div>
             </div>
 
-            {{--
-            Handling invalid input fields:
-
-            <input type="text" class="form-control is-invalid" ...>
-            <div class="invalid-feedback">
-                Message
-            </div>
-            --}}
-
             <div class="text-center">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>Mentés</button>
             </div>
