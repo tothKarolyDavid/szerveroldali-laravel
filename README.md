@@ -99,7 +99,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Az **admin** felhasználó módosíthatja is a meglévő mérkőzéseket.
 - [x] **Mérkőzés törlése** (1 pont)
   - Az **admin** felhasználó törölheti is a meglévő mérkőzéseket, amennyiben még nincs esemény rögzítve az adott meccshez!
-- [ ] **Csapatok listája** (2 pont)
+- [x] **Csapatok listája** (2 pont)
   - Ezt az oldalt bárki (vendég, bejelentkezett, admin) megtekintheti.
   - Az oldalon megjelenik az összes csapat neve, rövidítése és logója (ha van feltöltve, különben placeholder kép).
   - A lista a csapatok neve szerint betűrendbe rendezve jelenik meg.
