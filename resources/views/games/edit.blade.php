@@ -92,7 +92,7 @@
                         <div id="cover_preview" class="col-12">
                             <p>Cover preview:</p>
                             {{-- TODO: Use attached image --}}
-                            <img id="cover_preview_image" src="{{ asset('images/default_post_cover.jpg') }}" alt="Cover preview">
+                            <img id="cover_preview_image" src="{{ asset('images/default_game_cover.jpg') }}" alt="Cover preview">
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
     const coverPreviewImage = document.querySelector('img#cover_preview_image');
     // Render Blade to JS code:
     // TODO: Use attached image
-    const defaultCover = `{{ asset('images/default_post_cover.jpg') }}`;
+    const defaultCover = `{{ asset('images/default_game_cover.jpg') }}`;
 
     removeCoverInput.onchange = event => {
         if (removeCoverInput.checked) {

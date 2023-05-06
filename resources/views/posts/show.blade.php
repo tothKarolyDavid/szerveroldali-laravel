@@ -85,7 +85,7 @@
     <img
         id="cover_preview_image"
         {{-- TODO: Cover --}}
-        src="{{ asset('images/default_post_cover.jpg') }}"
+        src="{{ asset('images/default_game_cover.jpg') }}"
         alt="Cover preview"
         class="my-3"
     >

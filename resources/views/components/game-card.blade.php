@@ -15,8 +15,8 @@
         <div class="card mb-3" style="">
             <div class="row g-0">
                 <div class="col">
-                    <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-start h-100"
-                        alt="">
+                    <img src="{{ asset('images/default_game_cover.jpg') }}" class="img-fluid rounded-start"
+                        alt="" width="100">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -48,8 +48,8 @@
                     </div>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-end h-100"
-                        alt="">
+                    <img src="{{ asset('images/default_game_cover.jpg') }}" class="img-fluid rounded-end float-end"
+                        alt="" width="100">
                 </div>
             </div>
             <div class="card-footer">
@@ -72,8 +72,8 @@
             <div class="card mb-3" style="">
                 <div class="row g-0">
                     <div class="col">
-                        <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-start h-100"
-                            alt="">
+                        <img src="{{ asset('images/default_game_cover.jpg') }}" class="img-fluid rounded-start"
+                            alt="" width="100">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -105,8 +105,8 @@
                         </div>
                     </div>
                     <div class="col">
-                        <img src="{{ asset('images/default_post_cover.jpg') }}" class="img-fluid rounded-end h-100"
-                            alt="">
+                        <img src="{{ asset('images/default_game_cover.jpg') }}" class="img-fluid rounded-end float-end"
+                            alt="" width="100">
                     </div>
                 </div>
                 <div class="card-footer">
