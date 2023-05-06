@@ -11,8 +11,10 @@
                 <div class="float-lg-end">
                     {{-- TODO: Links, policy --}}
 
-                    <a href="#" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i>
-                        Create post</a>
+                    <a href="{{ route('games.create') }}" role="button" class="btn btn-sm btn-success mb-1">
+                        <i class="fas fa-plus-circle"></i>
+                        Új mérkőzés
+                    </a>
 
                     <a href="#" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i>
                         Create category</a>

@@ -92,7 +92,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
 - [x] **Meccs lezárása** (1 pont)
   - Az **admin** felhasználó számára a mérkőzésrészletező oldalról lehetőség van a meccs lezárására, tehát befejezetté nyilvánítására.
   - A lezárt meccshez további esemény nem rögzíthető, illetve a meccs ezután nem jelenik meg a folyamatban lévő mérkőzések szekciójában.
-- [ ] **Új mérkőzés létrehozása** (3 pont)
+- [x] **Új mérkőzés létrehozása** (3 pont)
   - Az **admin** felhasználó új mérkőzéseket is kiírhat.
   - Az egyes mezőkre jellemző alapvető validációs feltételek mellett ellenőrizni kell, hogy a kezdés időpontja jövőbeli, illetve a hazai és vendég csapat nem azonos.
 - [ ] **Meglévő mérkőzés módosítása** (3 pont)
