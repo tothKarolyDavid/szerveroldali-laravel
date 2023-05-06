@@ -1,6 +1,5 @@
 @extends('layouts.app')
-{{-- TODO: Post title --}}
-@section('title', 'View post: ')
+@section('title', 'Mérkőzés részletei')
 
 @section('content')
 
@@ -14,8 +13,6 @@
 
         <div class="row justify-content-between">
             <div class="col-12 col-md-8">
-
-                {{-- TODO: Link --}}
                 <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
 
                 <h1>{{ $title }}</h1>

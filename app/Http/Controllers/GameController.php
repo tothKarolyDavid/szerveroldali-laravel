@@ -42,21 +42,22 @@ class GameController extends Controller
     {
         $valid_team_ids = Game::all()->pluck('home_team_id')->merge(Game::all()->pluck('away_team_id'));
 
-        // validate the data
         $request->validate([
             'home_team_id' => ['required', 'integer', 'different:away_team_id', 'in:' . $valid_team_ids->implode(',')],
             'away_team_id' => ['required', 'integer', 'different:home_team_id', 'in:' . $valid_team_ids->implode(',')],
             'start' => ['required', 'date', 'after:now'],
         ]);
 
-        // create the game
+        $request->merge([
+            'start' => date('Y-m-d H:i:s', strtotime($request->start)),
+        ]);
+
         $game = Game::create([
             'home_team_id' => $request->home_team_id,
             'away_team_id' => $request->away_team_id,
             'start' => $request->start,
         ]);
 
-        // redirect to the game page
         return redirect()->route('games.show', ['game' => $game->id]);
     }
 
