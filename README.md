@@ -86,7 +86,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Az **admin** felhasználó számára a mérkőzésrészletező oldalról (pl. az alján elhelyezett űrlapon vagy innen elérhető külön oldalon) lehetőség van új esemény rögzítésére egy folyamatban lévő mérkőzéshez.
   - Ehhez meg kell adnia a következőket: hányadik játékpercben (1 és 90 közötti egész), milyen típusú esemény (gól, öngól, sárga lap, piros lap) történt és ki az érintett játékos. Alapvetően nem szükséges külön kiválasztani (vagy tárolni) a csapatot, hiszen azt a játékos személye egyértelműen meghatározza.
   - Az érintett játékost egy listából (pl. legördülő menü vagy rádiógombok) lehet kiválasztani, amely csapat és mezszám szerint rendezett.
-- [ ] **Esemény visszavonása** (1 pont)
+- [x] **Esemény visszavonása** (1 pont)
   - Az **admin** felhasználó az egyes eseményeket vissza is vonhatja (törölheti), pl. téves rögzítés esetén.
   - Visszavonni csak addig lehet eseményeket, amíg a meccs folyamatban van. Lezárt mérkőzés eseményeihez nem lehet hozzányúlni.
 - [ ] **Meccs lezárása** (1 pont)

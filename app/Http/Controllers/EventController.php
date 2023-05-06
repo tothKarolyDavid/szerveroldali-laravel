@@ -81,6 +81,10 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+
+        $event->delete();
+
+        return redirect()->route('games.show', ['game' => $event->game->id]);
     }
 }

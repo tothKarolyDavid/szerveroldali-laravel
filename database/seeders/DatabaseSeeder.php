@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
                         Game::factory()->create([
                             'home_team_id' => $home_team->id(),
                             'away_team_id' => $away_team->id(),
-                            'start' => now()->addDays(rand(1, 30)),
+                            'start' => now()->addDays(rand(3, 30)),
                             'finished' => false,
                         ]);
                         $future_games_generated++;

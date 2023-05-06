@@ -74,7 +74,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
+                            <div class="col d-flex">
                                 <p class="text-center">{{ $event->minute }}. perc</p>
                             </div>
                             <div class="col">
@@ -105,6 +105,25 @@
                             <div class="col">
                                 <p class="text-center">{{ $event->player->name }}</p>
                             </div>
+                            {{--
+
+                                Az admin felhasználó az egyes eseményeket vissza is vonhatja (törölheti), pl. téves rögzítés esetén.
+                                Visszavonni csak addig lehet eseményeket, amíg a meccs folyamatban van. Lezárt mérkőzés eseményeihez nem lehet hozzányúlni.
+
+
+                            --}}
+                            @auth
+                                @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
+                                    <div class="col">
+                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="float-end">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger"><i
+                                                    class="far fa-trash-alt"></i></button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -113,14 +132,8 @@
             @endforelse
         </div>
 
-        {{--
-            Admin from Új esemény létrehozásához
 
-            Ehhez meg kell adnia a következőket: hányadik játékpercben (1 és 90 közötti egész), milyen típusú esemény (gól, öngól, sárga lap, piros lap) történt és ki az érintett játékos.
-            Alapvetően nem szükséges külön kiválasztani (vagy tárolni) a csapatot, hiszen azt a játékos személye egyértelműen meghatározza.
-            Az érintett játékost egy listából (pl. legördülő menü vagy rádiógombok) lehet kiválasztani, amely csapat és mezszám szerint rendezett.
-
-        --}}
+        {{-- Új esemény hozzáadása --}}
 
         @auth
             @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())

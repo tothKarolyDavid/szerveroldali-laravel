@@ -15,7 +15,7 @@ class GameController extends Controller
     {
         $games = Game::all()->sortBy('start', SORT_REGULAR, true);
 
-        $games_in_progress = $games->where('finished', false)->where('start', '<', now());
+        $games_in_progress = $games->where('finished', false)->where('start', '<', now()->addDays(1));
         $games_in_the_future = $games->where('finished', false)->where('start', '>', now());
         $games_finished =  Game::where('finished', true)->orderBy('start', 'desc')->paginate(10);
 
