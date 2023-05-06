@@ -111,7 +111,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
 - [x] **Új csapat hozzáadása** (4 pont)
   - Az **admin** tudjon új csapatot felvenni a bajnokságba. Ehhez meg kell adjon minden kötelező adatot, de logó feltöltése opcionális!
   - A logóhoz tartozó képfeltöltés **ténylegesen** legyen fájlfeltöltés, tehát nem elég csupán a kép nevét vagy egy külső URL-t eltárolni!
-- [ ] **Meglévő csapat módosítása** (4 pont)
+- [x] **Meglévő csapat módosítása** (4 pont)
   - Az **admin** a csapat részletező oldaláról átlépve tudja módosítani is a felvett csapatok adatait és/vagy logóját.
   - Ha már van feltöltött kép, és nem tölt fel fájlt, akkor maradjon meg az előző kép; különben értelemszerűen le kell cserélni.
 - [ ] **Új játékos felvétele** (2 pont)

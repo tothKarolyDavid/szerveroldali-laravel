@@ -84,7 +84,11 @@ class TeamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $team = Team::findOrFail($id);
+
+        return view('teams.edit', [
+            'team' => $team,
+        ]);
     }
 
     /**
@@ -92,7 +96,28 @@ class TeamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $team = Team::findOrFail($id);
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:teams,name,' . $team->id],
+            'short_name' => ['required', 'string', 'max:4', 'unique:teams,shortname,' . $team->id],
+        ]);
+
+        if ($request->cover_image) {
+            $path = $request->file('cover_image')->store('public/teams');
+            $team->update([
+                'name' => $request->name,
+                'shortname' => $request->short_name,
+                'image' => Storage::url($path),
+            ]);
+        } else {
+            $team->update([
+                'name' => $request->name,
+                'shortname' => $request->short_name,
+            ]);
+        }
+
+        return redirect()->route('teams.show', $team->id);
     }
 
     /**
