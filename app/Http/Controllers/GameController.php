@@ -69,7 +69,16 @@ class GameController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $game = Game::findOrFail($id);
+
+        $game->update([
+            'home_team_score' => $request->home_team_score,
+            'away_team_score' => $request->away_team_score,
+            'finished' => $request->finished,
+        ]);
+
+        // redirect to the game page
+        return redirect()->route('games.show', ['game' => $game->id]);
     }
 
     /**

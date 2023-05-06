@@ -68,8 +68,25 @@
         <div class="mt-3">
             <x-game-card :games="$game" type="show_one" />
 
-            <h3>Események</h3>
+            {{--
+                Az admin felhasználó számára a mérkőzésrészletező oldalról lehetőség van a meccs lezárására, tehát befejezetté nyilvánítására.
+                A lezárt meccshez további esemény nem rögzíthető, illetve a meccs ezután nem jelenik meg a folyamatban lévő mérkőzések szekciójában.
+            --}}
 
+            @auth
+                @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
+                    <div class="mt-3 mb-3">
+                        <form action="{{ route('games.update', $game->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="finished" value="1">
+                            <button type="submit" class="btn btn-sm btn-success"><h5>Mérkőzés lezárása</h5></button>
+                        </form>
+                    </div>
+                @endif
+            @endauth
+
+            <h3>Események</h3>
             @forelse($events as $event)
                 <div class="card mb-3">
                     <div class="card-body">
@@ -105,17 +122,11 @@
                             <div class="col">
                                 <p class="text-center">{{ $event->player->name }}</p>
                             </div>
-                            {{--
-
-                                Az admin felhasználó az egyes eseményeket vissza is vonhatja (törölheti), pl. téves rögzítés esetén.
-                                Visszavonni csak addig lehet eseményeket, amíg a meccs folyamatban van. Lezárt mérkőzés eseményeihez nem lehet hozzányúlni.
-
-
-                            --}}
                             @auth
                                 @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
                                     <div class="col">
-                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="float-end">
+                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST"
+                                            class="float-end">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"><i

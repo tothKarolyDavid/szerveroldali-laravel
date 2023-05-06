@@ -89,7 +89,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
 - [x] **Esemény visszavonása** (1 pont)
   - Az **admin** felhasználó az egyes eseményeket vissza is vonhatja (törölheti), pl. téves rögzítés esetén.
   - Visszavonni csak addig lehet eseményeket, amíg a meccs folyamatban van. Lezárt mérkőzés eseményeihez nem lehet hozzányúlni.
-- [ ] **Meccs lezárása** (1 pont)
+- [x] **Meccs lezárása** (1 pont)
   - Az **admin** felhasználó számára a mérkőzésrészletező oldalról lehetőség van a meccs lezárására, tehát befejezetté nyilvánítására.
   - A lezárt meccshez további esemény nem rögzíthető, illetve a meccs ezután nem jelenik meg a folyamatban lévő mérkőzések szekciójában.
 - [ ] **Új mérkőzés létrehozása** (3 pont)

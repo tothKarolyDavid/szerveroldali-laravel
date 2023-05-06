@@ -9,6 +9,8 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['home_team_id', 'away_team_id', 'start', 'finished'];
+
     public function id()
     {
         return $this->id;
