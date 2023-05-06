@@ -121,7 +121,7 @@
                                 </div>
 
                                 @auth
-                                    @if (Auth::user()->is_admin)
+                                    @if (Auth::user()->is_admin && $player->events->count() == 0)
                                         <div class="col">
                                             <form action="{{ route('players.destroy', $player->id) }}" method="POST"
                                                 class="float-end">
@@ -130,6 +130,9 @@
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="far fa-trash-alt"></i></button>
                                             </form>
+                                        </div>
+                                    @else
+                                        <div class="col">
                                         </div>
                                     @endif
                                 @endauth
@@ -175,8 +178,8 @@
 
                         <div class="mb-3 form-group">
                             <label for="bithdate" class="form-label">Játékos születési dátuma*</label>
-                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
-                                id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
+                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror" id="birthdate"
+                                name="birthdate" value="{{ old('birthdate') }}">
 
                             @error('birthdate')
                                 <div class="invalid-feedback">

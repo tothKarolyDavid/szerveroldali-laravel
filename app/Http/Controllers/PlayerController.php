@@ -77,6 +77,10 @@ class PlayerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $player = Player::findOrFail($id);
+        $team = $player->team_id;
+        $player->delete();
+
+        return redirect()->route('teams.show', ['team' => $team]);
     }
 }
