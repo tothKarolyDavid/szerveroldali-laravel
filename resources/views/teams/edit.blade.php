@@ -41,11 +41,6 @@
                 </div>
             </div>
 
-
-            @php
-                $logo = $team->image ? url($team->image) : asset('images/default_game_cover.jpg');
-            @endphp
-
             <div class="form-group row mb-3">
                 <label for="cover_image" class="col-sm-2 col-form-label">Csapat logó</label>
                 <div class="col-sm-10">

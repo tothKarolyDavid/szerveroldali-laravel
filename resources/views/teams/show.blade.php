@@ -67,6 +67,9 @@
                                     <p class="text-center">Név</p>
                                 </div>
                                 <div class="col d-flex">
+                                    <p class="text-center">Mezszám</p>
+                                </div>
+                                <div class="col d-flex">
                                     <p class="text-center">Születési dátum</p>
                                 </div>
                                 <div class="col d-flex">
@@ -89,6 +92,9 @@
                             @else
                                 <div class="col d-flex">
                                     <p class="text-center">{{ $player->name }}</p>
+                                </div>
+                                <div class="col d-flex">
+                                    <p class="text-center">{{ $player->number }}</p>
                                 </div>
                                 <div class="col d-flex">
                                     <p class="text-center">{{ $player->birthdate }}</p>
@@ -136,7 +142,7 @@
         </div>
 
 
-        {{-- Új esemény hozzáadása --}}
+        {{-- Új játékos hozzáadása --}}
 
         @auth
             @if (Auth::user()->is_admin)
@@ -144,48 +150,37 @@
                     <h3>Új játékos hozzáadása</h3>
                     <form action="{{ route('players.store') }}" method="POST">
                         @csrf
+
                         <div class="mb-3 form-group">
-                            <label for="minute" class="form-label">Hányadik játékpercben történt az esemény?</label>
-                            <input type="number" class="form-control @error('minute') is-invalid @enderror" id="minute"
-                                name="minute" value="{{ old('minute') ? old('minute') : '' }}">
-                            @error('minute')
+                            <label for="name" class="form-label">Játékos neve*</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                name="name" value="{{ old('name') }}">
+                            @error('name')
                                 <div class="invalid-feedback">
-                                    Nem megfelelő játékperc!
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 form-group">
-                            <label for="type" class="form-label">Milyen típusú esemény történt?</label>
-                            <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
-                                <option value="goal" @if (old('type') == 'goal') selected @endif>Gól</option>
-                                <option value="own_goal" @if (old('type') == 'own_goal') selected @endif>Öngól</option>
-                                <option value="yellow_card" @if (old('type') == 'yellow_card') selected @endif>Sárga lap</option>
-                                <option value="red_card" @if (old('type') == 'red_card') selected @endif>Piros lap</option>
-                            </select>
-                            @error('type')
-                                <div class="invalid-feedback">
-                                    Nem megfelelő esemény típus!
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
                         <div class="mb-3 form-group">
-                            <label for="player" class="form-label">Ki az érintett játékos?</label>
-                            <select class="form-select @error('player') is-invalid @enderror" id="player" name="player">
-                                @php
-
-                                @endphp
-                                @endphp
-
-                                @foreach ($players as $player)
-                                    <option @if (old('player') == $player->id) selected @endif value="{{ $player->id }}">
-                                        {{ $player->name }} ({{ $player->team->name }}
-                                        , {{ $player->number }})</option>
-                                @endforeach
-                            </select>
-                            @error('player')
+                            <label for="number" class="form-label">Játékos mezszáma</label>
+                            <input type="number" class="form-control @error('number') is-invalid @enderror" id="number"
+                                name="number" value="{{ old('number') }}">
+                            @error('number')
                                 <div class="invalid-feedback">
-                                    Nem létező játékos!
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3 form-group">
+                            <label for="bithdate" class="form-label">Játékos születési dátuma*</label>
+                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
+                                id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
+
+                            @error('birthdate')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
