@@ -7,6 +7,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::resource('leaderboard', LeaderboardController::class);
 Route::resource('favorites', FavoritesController::class);
 
 Route::resource('events', EventController::class);
+
+Route::resource('players', PlayerController::class);
+
+
 
 
 Route::get('/home', function () {

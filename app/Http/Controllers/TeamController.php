@@ -41,9 +41,21 @@ class TeamController extends Controller
     public function show(string $id)
     {
         $team = Team::findOrFail($id);
+        $games = $team->homeGames->merge($team->awayGames)->sortBy('date', SORT_REGULAR, true);
+        $players = $team->players->sortBy('name');
+
+        $games_in_progress = $games->where('finished', false)->where('start', '<', now()->addDays(1));
+        $games_in_the_future = $games->where('finished', false)->where('start', '>', now());
+        $games_finished =  $games->where('finished', true)->sortBy('start', SORT_REGULAR, true);
+
 
         return view('teams.show', [
             'team' => $team,
+            'games' => $games,
+            'players' => $players,
+            'games_in_progress' => $games_in_progress,
+            'games_in_future' =>  $games_in_the_future,
+            'games_finished' => $games_finished,
         ]);
     }
 

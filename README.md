@@ -104,7 +104,7 @@ Külön pontszám nélküli **minimumkövetelményként** teljesítendők az al�
   - Az oldalon megjelenik az összes csapat neve, rövidítése és logója (ha van feltöltve, különben placeholder kép).
   - A lista a csapatok neve szerint betűrendbe rendezve jelenik meg.
   - Az egyes csapatokra kattintva továbblépünk az adott csapat részletező oldalára.
-- [ ] **Csapatrészletező oldal** (2 pont)
+- [x] **Csapatrészletező oldal** (2 pont)
   - A csapatrészletező oldalon két fontos információ kell megjelenjen:
     1. A csapat mérkőzései időrendi sorrendben. (Természetesen itt is fel kell tüntetni az eredményt a folyamatban lévő és befejezett meccsek esetében.)
     2. A csapatban lévő összes játékos adatai: neve, születési dátuma, statisztikái (hány gólt, öngólt rúgott, illetve hány sárga és piros lapot kapott).
