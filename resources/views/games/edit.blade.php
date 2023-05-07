@@ -9,13 +9,11 @@
     <div class="container">
         <h1>Mérkőzés szerkesztése</h1>
         <div class="mb-4">
-            {{-- TODO: Link --}}
             <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
         </div>
 
         <form action="{{ route('games.update', ['game' => $game->id]) }}" method="POST" enctype="multipart/form-data">
             @method('PATCH')
-
             @csrf
 
             <div class="form-group row mb-3">
@@ -70,7 +68,6 @@
                 </div>
             </div>
 
-            {{-- finished mezo bekerese --}}
             <div class="form-group row mb-3">
                 <label for="finished" class="col-sm-2 col-form-label">Befejezett*</label>
                 <div class="col-sm-10">

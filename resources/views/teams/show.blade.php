@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Csapat részletei')
-
 @section('content')
 
     @php
@@ -8,8 +7,6 @@
     @endphp
 
     <div class="container">
-
-        {{-- TODO: Session flashes --}}
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>{{ session()->get('success') }}</strong>
@@ -25,8 +22,6 @@
 
             <div class="col-12 col-md-4">
                 <div class="float-lg-end">
-
-                    {{-- TODO: Links, policy --}}
                     @auth
                         @if (Auth::user()->is_admin)
                             <a role="button" class="btn btn-sm btn-primary" href="{{ route('teams.edit', $team->id) }}"
@@ -192,7 +187,6 @@
                             <div class="card-body">
                                 <div class="small">
                                     <ul class="fa-ul">
-                                        {{-- TODO: Read stats from DB --}}
                                         <li>
                                             <span class="fa-li"><i class=""></i></span>Folyamatban lévő mérkőzések:
                                             {{ $games_in_progress->count() }}
@@ -215,7 +209,6 @@
                                             <span class="fa-li"><i class="fas fa-futbol"></i></span>Kapott gólok:
                                             {{ $goals_conceded }}
                                         </li>
-                                        {{-- nyert, vesztett, dontetlen --}}
                                         <li>
                                             <span class="fa-li"><i class="fas fa-trophy"></i></span>Nyert mérkőzések:
                                             {{ $won }}
@@ -228,7 +221,6 @@
                                             <span class="fa-li"><i class="fas fa-trophy"></i></span>Döntetlen mérkőzések:
                                             {{ $drawn }}
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -241,7 +233,6 @@
 
 
         {{-- Új játékos hozzáadása --}}
-
         @auth
             @if (Auth::user()->is_admin)
                 <div class="mt-3">
@@ -288,7 +279,6 @@
                 </div>
             @endif
         @endauth
-
 
     </div>
 @endsection

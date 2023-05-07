@@ -9,14 +9,10 @@
     <div class="container">
         <h1>Új mérkőzés</h1>
         <div class="mb-4">
-            {{-- TODO: Link --}}
             <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
         </div>
 
-        {{-- TODO: action, method, enctype --}}
         <form action="{{ route('games.store') }}" method="POST" enctype="multipart/form-data">
-
-            {{-- TODO: Validation --}}
             @csrf
 
             <div class="form-group row mb-3">

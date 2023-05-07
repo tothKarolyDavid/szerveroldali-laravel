@@ -9,8 +9,6 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="float-lg-end">
-                    {{-- TODO: Links, policy --}}
-
                     @auth
                         @if (Auth::user()->is_admin)
                             <a href="{{ route('games.create') }}" role="button" class="btn btn-sm btn-success mb-1">
@@ -19,12 +17,10 @@
                             </a>
                         @endif
                     @endauth
-
                 </div>
             </div>
         </div>
 
-        {{-- TODO: Session flashes --}}
         <div class="row mt-3">
             <div class="col-12 col-lg-9">
                 @if (session()->has('success'))
@@ -47,7 +43,6 @@
 
 
                 <div class="d-flex justify-content-center">
-                    {{-- TODO: Pagination Bootsrap 5 --}}
                     {!! $games_finished->links() !!}
                 </div>
 
@@ -63,7 +58,6 @@
                                 Jővőbeli mérkőzések
                             </div>
                             <div class="card-body">
-                                {{-- TODO: Read categories from DB --}}
                                 @foreach ($games_in_future as $game)
                                     <a href="{{ route('games.show', $game->id) }}" class="text-decoration-none">
                                         <div class="d-flex justify-content-between">
@@ -86,7 +80,6 @@
                             <div class="card-body">
                                 <div class="small">
                                     <ul class="fa-ul">
-                                        {{-- TODO: Read stats from DB --}}
                                         <li>
                                             <span class="fa-li"><i class=""></i></span>Folyamatban lévő mérkőzések:
                                             {{ $games_in_progress->count() }}

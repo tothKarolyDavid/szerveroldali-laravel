@@ -5,7 +5,6 @@
     <div class="container">
         <h1>Csapat szerkesztése</h1>
         <div class="mb-4">
-            {{-- TODO: Link --}}
             <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
         </div>
 
@@ -53,7 +52,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Mentés</button>

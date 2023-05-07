@@ -9,20 +9,11 @@
     <div class="container">
         <h1>Új csapat hozzáadása</h1>
         <div class="mb-4">
-            {{-- TODO: Link --}}
             <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
         </div>
 
-        {{-- TODO: action, method, enctype --}}
         <form action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
-            {{--
-                Az admin tudjon új csapatot felvenni a bajnokságba. Ehhez meg kell adjon minden kötelező adatot, de logó feltöltése opcionális!
-                A logóhoz tartozó képfeltöltés ténylegesen legyen fájlfeltöltés, tehát nem elég csupán a kép nevét vagy egy külső URL-t eltárolni!
-            --}}
-
-            {{-- TODO: Validation --}}
             @csrf
-
 
             <div class="form-group row mb-3">
                 <label for="name" class="col-sm-2 col-form-label">Csapat neve*</label>
@@ -52,11 +43,9 @@
                 </div>
             </div>
 
-            {{-- csapat logo --}}
             @php
                 $logo = old('cover_image') ? url(old('cover_image')) : asset('images/default_game_cover.jpg');
             @endphp
-
             <div class="form-group row mb-3">
                 <label for="cover_image" class="col-sm-2 col-form-label">Csapat logó</label>
                 <div class="col-sm-10">

@@ -27,28 +27,9 @@ class EventFactory extends Factory
     */
     public function definition(): array
     {
-        // $game = Game::all()->random();
-        // $team = rand(true, false) ? $game->homeTeam() : $game->awayTeam();
-        // $player = Player::where('team_id', $team->id())->get()->random();
-
         return [
             'type' => $this->faker->randomElement(['goal', 'goal', 'goal', 'own_goal', 'yellow_card', 'red_card']),
             'minute' => $this->faker->numberBetween(1, 90),
         ];
-
-        /*
-        $players = Player::all();
-        $games = Game::all();
-
-        $player = $players->random();
-        $game = $games->random();
-
-        return [
-            'type' => $this->faker->randomElement(['goal', 'goal', 'goal', 'goal', 'goal', 'goal', 'owngoal', 'yellowcard', 'redcard']),
-            'minute' => $this->faker->numberBetween(1, 90),
-
-            'player_id' => $player->id(),
-            'game_id' => $game->id(),
-        ];*/
     }
 }

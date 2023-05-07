@@ -2,21 +2,13 @@
 @section('title', 'Mérkőzés részletei')
 
 @section('content')
-
-    @php
-
-    @endphp
-
     <div class="container">
-
-        {{-- TODO: Session flashes --}}
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>{{ session()->get('success') }}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
 
         <div class="row justify-content-between">
             <div class="col-12 col-md-8">
@@ -27,8 +19,6 @@
 
             <div class="col-12 col-md-4">
                 <div class="float-lg-end">
-
-                    {{-- TODO: Links, policy --}}
                     @auth
                         @if (Auth::user()->is_admin)
                             <a role="button" class="btn btn-sm btn-primary" href="{{ route('games.edit', $game->id) }}"
@@ -79,7 +69,6 @@
                             Igen, törölni szeretném ezt a mérkőzést
                         </button>
 
-                        {{-- TODO: Route, directives --}}
                         <form id="delete-post-form" action="{{ route('games.destroy', $game->id) }}" method="POST"
                             class="d-none">
                             @csrf
@@ -172,7 +161,6 @@
 
 
         {{-- Új esemény hozzáadása --}}
-
         @auth
             @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
                 <div class="mt-3">
@@ -231,7 +219,6 @@
                 </div>
             @endif
         @endauth
-
 
     </div>
 @endsection

@@ -9,8 +9,6 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="float-lg-end">
-                    {{-- TODO: Links, policy --}}
-
                     @auth
                         @if (Auth::user()->is_admin)
                             <a href="{{ route('teams.create') }}" role="button" class="btn btn-sm btn-success mb-1">
@@ -20,13 +18,6 @@
                         @endif
                     @endauth
                 </div>
-            </div>
-        </div>
-
-        {{-- TODO: Session flashes --}}
-        <div class="row mt-3">
-            <div class="col-12 col-lg-9">
-
             </div>
         </div>
 
@@ -40,11 +31,13 @@
 
                         <div class="card mt-3 me-3" style="width: 18rem;">
 
-                            <img src="{{ $team_logo }}" class="card-img-top w-100 h-100" alt="{{ $team->shortname . ' logo' }}">
+                            <img src="{{ $team_logo }}" class="card-img-top w-100 h-100"
+                                alt="{{ $team->shortname . ' logo' }}">
                             <div class="card-body">
                                 <h5 class="card-title align-text-bottom">{{ $team->name }}</h5>
                                 <p class="card-text align-text-bottom">{{ $team->shortname }}</p>
-                                <a href="{{ route('teams.show', $team->id) }}" class="btn btn-primary align-bottom-bottom">Részletek</a>
+                                <a href="{{ route('teams.show', $team->id) }}"
+                                    class="btn btn-primary align-bottom-bottom">Részletek</a>
                                 <div class="text-center float-end">
                                     @auth
                                         @if (Auth::user()->is_favorite_team($team->id))

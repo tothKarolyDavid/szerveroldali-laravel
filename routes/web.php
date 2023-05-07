@@ -32,15 +32,9 @@ Route::resource('events', EventController::class);
 
 Route::resource('players', PlayerController::class);
 
-// route('teams.unfavorite', $team->id) support POST and DELETE
 Route::delete('/teams/{team}/unfavorite', [TeamController::class, 'unfavorite'])->name('teams.unfavorite');
 
-// route('teams.favorite', $team->id) support POST and DELETE
 Route::post('/teams/{team}/favorite', [TeamController::class, 'favorite'])->name('teams.favorite');
-
-
-
-
 
 Route::get('/home', function () {
     return view('home');
@@ -49,30 +43,5 @@ Route::get('/home', function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
-
-
-// Route::get('/posts/create', function () {
-//     return view('posts.create');
-// });
-
-// Route::get('/posts/x', function () {
-//     return view('posts.show');
-// });
-
-// Route::get('/posts/x/edit', function () {
-//     return view('posts.edit');
-// });
-
-// // -----------------------------------------
-
-// Route::get('/categories/create', function () {
-//     return view('categories.create');
-// });
-
-// Route::get('/categories/x', function () {
-//     return view('categories.show');
-// });
-
-// -----------------------------------------
 
 Auth::routes();

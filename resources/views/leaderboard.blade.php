@@ -9,12 +9,6 @@
             </div>
         </div>
 
-        {{-- TODO: Session flashes --}}
-        <div class="row mt-3">
-            <div class="col-12 col-lg-9">
-
-            </div>
-        </div>
         <div class="row mt-3">
             <div class="col-12">
                 <div class="row g-0">
