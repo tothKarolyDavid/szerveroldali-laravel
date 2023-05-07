@@ -45,7 +45,7 @@ class PlayerController extends Controller
             'team_id' => $request->team,
         ]);
 
-        return redirect()->route('teams.show', ['team' => $request->team]);
+        return redirect()->route('teams.show', ['team' => $request->team])->with('success', 'Új játékos hozzáadva: ' . $player->name . '!');
     }
 
     /**
@@ -81,6 +81,6 @@ class PlayerController extends Controller
         $team = $player->team_id;
         $player->delete();
 
-        return redirect()->route('teams.show', ['team' => $team]);
+        return redirect()->route('teams.show', ['team' => $team])->with('success', 'Játékos törölve: ' . $player->name . '!');
     }
 }

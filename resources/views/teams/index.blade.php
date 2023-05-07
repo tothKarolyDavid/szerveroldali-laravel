@@ -39,7 +39,8 @@
                         @endphp
 
                         <div class="card mt-3 me-3" style="width: 18rem;">
-                            <img src="{{ $team_logo }}" class="card-img-top" alt="...">
+
+                            <img src="{{ $team_logo }}" class="card-img-top w-100 h-100" alt="{{ $team->shortname . ' logo' }}">
                             <div class="card-body">
                                 <h5 class="card-title align-text-bottom">{{ $team->name }}</h5>
                                 <p class="card-text align-text-bottom">{{ $team->shortname }}</p>

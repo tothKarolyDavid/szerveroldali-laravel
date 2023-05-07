@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
-use Illuminate\Contracts\Pagination\Paginator;
 
 class GameController extends Controller
 {
@@ -23,7 +22,6 @@ class GameController extends Controller
             'games_in_progress' => $games_in_progress,
             'games_in_future' =>  $games_in_the_future,
             'games_finished' => $games_finished,
-
         ]);
     }
 
@@ -56,7 +54,10 @@ class GameController extends Controller
             'start' => $request->start,
         ]);
 
-        return redirect()->route('games.show', ['game' => $game->id]);
+        $home_team = $game->homeTeam->name;
+        $away_team = $game->awayTeam->name;
+
+        return redirect()->route('games.show', ['game' => $game->id])->with('success', 'Új mérkőzés létrehozva: ' . $home_team . ' vs ' . $away_team . '!');
     }
 
     /**
@@ -107,13 +108,9 @@ class GameController extends Controller
             'start' => date('Y-m-d H:i:s', strtotime($request->start)),
         ]);
 
-
         if ($game->homeTeam->id != $request->home_team_id || $game->awayTeam->id != $request->away_team_id) {
            $game->events()->delete();
         }
-
-
-
 
         $game->update([
             'home_team_id' => $request->home_team_id,
@@ -122,7 +119,7 @@ class GameController extends Controller
             'start' => $request->start,
         ]);
 
-        return redirect()->route('games.show', $game->id);
+        return redirect()->route('games.show', $game->id)->with('success', 'Mérkőzés módosítva!');
     }
 
     /**
@@ -132,6 +129,6 @@ class GameController extends Controller
     {
         $game = Game::findOrFail($id);
         $game->delete();
-        return redirect()->route('games.index');
+        return redirect()->route('games.index')->with('success', 'Sikeresen töröltél egy mérkőzést!');
     }
 }

@@ -4,21 +4,29 @@
 @section('content')
 
     @php
-
+        $logo = $team->image ?? asset('images/default_game_cover.jpg');
     @endphp
 
     <div class="container">
 
         {{-- TODO: Session flashes --}}
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session()->get('success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <div class="row justify-content-between">
             <div class="col-12 col-md-8">
                 <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
 
                 <h1>{{ $team->name }}</h1>
-                <div class="text-center float-end">
-
+                <div class="col">
+                    <img src="{{ $logo }}" class="img-fluid rounded-start" style="max-height: 200px;"
+                        alt="{{ $team->shortname . ' logo' }}">
                 </div>
+
             </div>
 
             <div class="col-12 col-md-4">
@@ -200,8 +208,8 @@
 
                         <div class="mb-3 form-group">
                             <label for="bithdate" class="form-label">Játékos születési dátuma*</label>
-                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror" id="birthdate"
-                                name="birthdate" value="{{ old('birthdate') }}">
+                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
+                                id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
 
                             @error('birthdate')
                                 <div class="invalid-feedback">

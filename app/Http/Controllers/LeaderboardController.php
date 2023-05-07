@@ -27,7 +27,7 @@ class LeaderboardController extends Controller
      */
     public function create()
     {
-        return view('leaderboard');
+        //
     }
 
     /**
@@ -43,7 +43,7 @@ class LeaderboardController extends Controller
      */
     public function show(string $id)
     {
-        return view('leaderboard');
+        //
     }
 
     /**

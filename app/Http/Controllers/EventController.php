@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Event;
-use App\Models\Player;
-use App\Models\Team;
 use Illuminate\Validation\Rule;
 
 class EventController extends Controller
@@ -40,7 +38,6 @@ class EventController extends Controller
             'player' => ['required', 'exists:players,id', Rule::in($valid_player_ids)],
         ]);
 
-        // create the event
         Event::create([
             'game_id' => $request->game,
             'minute' => $request->minute,
@@ -48,8 +45,7 @@ class EventController extends Controller
             'player_id' => $request->player,
         ]);
 
-        // redirect to the game page
-        return redirect()->route('games.show', ['game' => $request->game]);
+        return redirect()->route('games.show', ['game' => $request->game])->with('success', 'Sikeresen hozzáadtál egy eseményt a mérkőzéshez!');
     }
 
     /**
@@ -85,6 +81,6 @@ class EventController extends Controller
 
         $event->delete();
 
-        return redirect()->route('games.show', ['game' => $event->game->id]);
+        return redirect()->route('games.show', ['game' => $event->game->id])->with('success', 'Sikeresen töröltél egy eseményt a mérkőzésről!');
     }
 }

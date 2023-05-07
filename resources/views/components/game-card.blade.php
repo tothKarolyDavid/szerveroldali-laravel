@@ -17,7 +17,7 @@
         <div class="card mb-3" style="">
             <div class="row g-0">
                 <div class="col">
-                    <img src="{{ $home_team_logo }}" class="img-fluid rounded-start" alt="" width="100">
+                    <img src="{{ $home_team_logo }}" class="img-fluid rounded-start w-100 h-100" alt="" width="100">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end" alt=""
+                    <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end w-100 h-100" alt=""
                         width="100">
                 </div>
             </div>
@@ -75,7 +75,7 @@
             <div class="card mb-3" style="">
                 <div class="row g-0">
                     <div class="col">
-                        <img src="{{ $home_team_logo }}" class="img-fluid rounded-start" alt="" width="100">
+                        <img src="{{ $home_team_logo }}" class="img-fluid rounded-start w-100 h-100" alt="">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end" alt=""
+                        <img src="{{ $away_team_logo }}" class="img-fluid rounded-end float-end w-100 h-100" alt=""
                             width="100">
                     </div>
                 </div>

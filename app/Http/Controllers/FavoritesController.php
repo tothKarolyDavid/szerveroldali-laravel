@@ -12,7 +12,10 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-        // games that are favorites of the user
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('message', 'Kérlek jelentkezz be, hogy kedvenceket tudj hozzáadni!');
+        }
+
         $favorite_team_ids = auth()->user()->teams()->pluck('team_id');
         $games = Game::whereIn('home_team_id', $favorite_team_ids)
             ->orWhereIn('away_team_id', $favorite_team_ids)

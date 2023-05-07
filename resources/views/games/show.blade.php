@@ -10,6 +10,13 @@
     <div class="container">
 
         {{-- TODO: Session flashes --}}
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session()->get('success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
 
         <div class="row justify-content-between">
             <div class="col-12 col-md-8">
@@ -30,23 +37,22 @@
                                 Mérkőzés szerkesztése
                             </a>
 
-                            @if($game->events->count() == 0)
-                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal">
+                            @if ($game->events->count() == 0)
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete-confirm-modal">
                                     <i class="far fa-trash-alt">
                                         <span></i>
                                     Mérkőzés törlése
                                     </span>
                                 </button>
-
                             @else
-                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-confirm-modal" disabled>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete-confirm-modal" disabled>
                                     <i class="far fa-trash-alt">
                                         <span></i>
                                     Mérkőzés törlése
                                     </span>
                                 </button>
-
-
                             @endif
                         @endif
                     @endauth
@@ -88,17 +94,16 @@
         <div class="mt-3">
             <x-game-card :games="$game" type="show_one" />
 
-            {{--
-                Az admin felhasználó számára a mérkőzésrészletező oldalról lehetőség van a meccs lezárására, tehát befejezetté nyilvánítására.
-                A lezárt meccshez további esemény nem rögzíthető, illetve a meccs ezután nem jelenik meg a folyamatban lévő mérkőzések szekciójában.
-            --}}
-
             @auth
-                @if (Auth::user()->is_admin && $game->finished == false && $game->start < now())
+                @if (Auth::user()->is_admin && $game->finished == false)
                     <div class="mt-3 mb-3">
                         <form action="{{ route('games.update', $game->id) }}" method="POST">
                             @csrf
                             @method('PUT')
+
+                            <input type="hidden" name="start" value="{{ $game->start }}">
+                            <input type="hidden" name="home_team_id" value="{{ $game->home_team_id }}">
+                            <input type="hidden" name="away_team_id" value="{{ $game->away_team_id }}">
                             <input type="hidden" name="finished" value="1">
                             <button type="submit" class="btn btn-sm btn-success">
                                 <h5>Mérkőzés lezárása</h5>
@@ -180,7 +185,7 @@
                                 name="minute" value="{{ old('minute') ? old('minute') : '' }}">
                             @error('minute')
                                 <div class="invalid-feedback">
-                                    Nem megfelelő játékperc!
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -189,12 +194,13 @@
                             <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
                                 <option value="goal" @if (old('type') == 'goal') selected @endif>Gól</option>
                                 <option value="own_goal" @if (old('type') == 'own_goal') selected @endif>Öngól</option>
-                                <option value="yellow_card" @if (old('type') == 'yellow_card') selected @endif>Sárga lap</option>
+                                <option value="yellow_card" @if (old('type') == 'yellow_card') selected @endif>Sárga lap
+                                </option>
                                 <option value="red_card" @if (old('type') == 'red_card') selected @endif>Piros lap</option>
                             </select>
                             @error('type')
                                 <div class="invalid-feedback">
-                                    Nem megfelelő esemény típus!
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -215,7 +221,7 @@
                             </select>
                             @error('player')
                                 <div class="invalid-feedback">
-                                    Nem létező játékos!
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>

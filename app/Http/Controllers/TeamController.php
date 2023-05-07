@@ -54,7 +54,7 @@ class TeamController extends Controller
             ]);
         }
 
-        return redirect()->route('teams.show', $team->id);
+        return redirect()->route('teams.show', $team->id)->with('success', 'Új csapat hozzáadva: ' . $team->name . '!');
     }
 
     /**
@@ -119,7 +119,7 @@ class TeamController extends Controller
             ]);
         }
 
-        return redirect()->route('teams.show', $team->id);
+        return redirect()->route('teams.show', $team->id)->with('success', 'Csapat frissítve: ' . $team->name . '!');
     }
 
     /**
@@ -137,7 +137,6 @@ class TeamController extends Controller
 
         $user->teams()->detach($team->id);
 
-        // redirect to the previous page
         return redirect()->back();
     }
 
