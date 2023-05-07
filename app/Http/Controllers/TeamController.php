@@ -70,6 +70,7 @@ class TeamController extends Controller
         $games_in_the_future = $games->where('finished', false)->where('start', '>', now());
         $games_finished =  $games->where('finished', true)->sortBy('start', SORT_REGULAR, true);
 
+        $stats = $team->statistics();
 
         return view('teams.show', [
             'team' => $team,
@@ -78,6 +79,13 @@ class TeamController extends Controller
             'games_in_progress' => $games_in_progress,
             'games_in_future' =>  $games_in_the_future,
             'games_finished' => $games_finished,
+            'won' => $stats['won'],
+            'drawn' => $stats['drawn'],
+            'lost' => $stats['lost'],
+            'points' => $stats['points'],
+            'goal_difference' => $stats['goal_difference'],
+            'goals_scored' => $stats['goals_scored'],
+            'goals_conceded' => $stats['goals_conceded'],
         ]);
     }
 
