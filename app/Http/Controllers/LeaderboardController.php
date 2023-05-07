@@ -14,7 +14,8 @@ class LeaderboardController extends Controller
     {
         $teams = Team::all()->sortBy('name');
         $teams = $teams->sortByDesc(function ($team, $key) {
-            return $team->num_of_points() . $team->goal_difference();
+            $stats = $team->statistics();
+            return $stats['points'] * 1000 + $stats['goal_difference'];
         });
 
         return view('leaderboard', [

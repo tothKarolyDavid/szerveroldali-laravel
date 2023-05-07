@@ -21,7 +21,7 @@
             <div class="col-12 col-md-8">
                 <a href="{{ route('home') }}"><i class="fas fa-long-arrow-alt-left"></i>Vissza a főoldalra</a>
 
-                <h1>{{ $team->name }}</h1>
+                <h1>{{ $team->name }} ({{ $team->shortname }})</h1>
                 <div class="col">
                     <img src="{{ $logo }}" class="img-fluid rounded-start" style="max-height: 200px;"
                         alt="{{ $team->shortname . ' logo' }}">

@@ -29,7 +29,7 @@
                                                     <h5 class="card-title">Logó</h5>
                                                 </div>
                                                 <div class="col text-center">
-                                                    <h5 class="card-title">Csapat neve</h5>
+                                                    <h5 class="card-title">Csapatnév</h5>
                                                 </div>
                                                 <div class="col text-center">
                                                     <h5>Győzelmek</h5>
@@ -39,6 +39,12 @@
                                                 </div>
                                                 <div class="col text-center">
                                                     <h5>Vereségek</h5>
+                                                </div>
+                                                <div class="col text-center">
+                                                    <h5>Gólok</h5>
+                                                </div>
+                                                <div class="col text-center">
+                                                    <h5>Kapott gólok</h5>
                                                 </div>
                                                 <div class="col text-center">
                                                     <h5>Gólkülönbség</h5>
@@ -57,11 +63,14 @@
 
                         @php
                             $logo = $team->image ?? asset('images/default_game_cover.jpg');
-                            $wins = $team->num_of_won_games();
-                            $draws = $team->num_of_draw_games();
-                            $loses = $team->num_of_lost_games();
-                            $goal_difference = $team->goal_difference();
-                            $points = $team->num_of_points();
+                            $stats = $team->statistics();
+                            $wins = $stats['won'];
+                            $draws = $stats['drawn'];
+                            $loses = $stats['lost'];
+                            $scored_goals = $stats['goals_scored'];
+                            $received_goals = $stats['goals_conceded'];
+                            $goal_difference = $stats['goal_difference'];
+                            $points = $stats['points'];
                         @endphp
 
                         <div class="card mb-3">
@@ -86,6 +95,12 @@
                                                 <h5>{{ $loses }}</h5>
                                             </div>
                                             <div class="col text-center">
+                                                <h5>{{ $scored_goals }}</h5>
+                                            </div>
+                                            <div class="col text-center">
+                                                <h5>{{ $received_goals }}</h5>
+                                            </div>
+                                            <div class="col text-center">
                                                 <h5>{{ $goal_difference }}</h5>
                                             </div>
                                             <div class="col text-center">
@@ -94,7 +109,8 @@
                                             <div class="col text-center">
                                                 @auth
                                                     @if (Auth::user()->is_favorite_team($team->id))
-                                                        <form action="{{ route('teams.unfavorite', $team->id) }}" method="POST">
+                                                        <form action="{{ route('teams.unfavorite', $team->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">

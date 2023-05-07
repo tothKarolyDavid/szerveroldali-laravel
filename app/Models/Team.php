@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Player;
+use App\Models\Game;
+use App\Models\Event;
 
 class Team extends Model
 {
@@ -11,7 +14,8 @@ class Team extends Model
 
     protected $fillable = ['name', 'shortname', 'image'];
 
-    public function id() {
+    public function id()
+    {
         return $this->id;
     }
 
@@ -30,38 +34,55 @@ class Team extends Model
         return $this->hasMany(Game::class, 'away_team_id');
     }
 
-    public function num_of_won_games()
+    public function statistics()
     {
-        return $this->homeGames()->where('home_team_score', '>', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '>', 'home_team_score')->count();
-    }
+        $won_count = 0;
+        $lost_count = 0;
+        $drawn_count = 0;
+        $scored_goals = 0;
+        $conceded_goals = 0;
 
-    public function num_of_lost_games()
-    {
-        return $this->homeGames()->where('home_team_score', '<', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '<', 'home_team_score')->count();
-    }
+        $homeGames = $this->homeGames->where('finished', '=', true);
+        $awayGames = $this->awayGames->where('finished', '=', true);
 
-    public function num_of_draw_games()
-    {
-        return $this->homeGames()->where('home_team_score', '=', 'away_team_score')->count() + $this->awayGames()->where('away_team_score', '=', 'home_team_score')->count();
-    }
+        foreach ($homeGames as $game) {
+            $scores = $game->getTeamScores();
 
-    public function num_of_scored_goals()
-    {
-        return $this->homeGames()->sum('home_team_score') + $this->awayGames()->sum('away_team_score');
-    }
+            $scored_goals += $scores['home_team_score'];
+            $conceded_goals += $scores['away_team_score'];
 
-    public function num_of_conceded_goals()
-    {
-        return $this->homeGames()->sum('away_team_score') + $this->awayGames()->sum('home_team_score');
-    }
+            if ($scores['home_team_score'] > $scores['away_team_score']) {
+                $won_count += 1;
+            } elseif ($scores['home_team_score'] < $scores['away_team_score']) {
+                $lost_count += 1;
+            } else {
+                $drawn_count += 1;
+            }
+        }
 
-    public function goal_difference()
-    {
-        return $this->num_of_scored_goals() - $this->num_of_conceded_goals();
-    }
+        foreach ($awayGames as $game) {
+            $scores = $game->getTeamScores();
 
-    public function num_of_points()
-    {
-        return $this->num_of_won_games() * 3 + $this->num_of_draw_games();
+            $scored_goals += $scores['away_team_score'];
+            $conceded_goals += $scores['home_team_score'];
+
+            if ($scores['home_team_score'] < $scores['away_team_score']) {
+                $won_count += 1;
+            } elseif ($scores['home_team_score'] > $scores['away_team_score']) {
+                $lost_count += 1;
+            } else {
+                $drawn_count += 1;
+            }
+        }
+
+        return [
+            'won' => $won_count,
+            'lost' => $lost_count,
+            'drawn' => $drawn_count,
+            'goals_scored' => $scored_goals,
+            'goals_conceded' => $conceded_goals,
+            'goal_difference' => $scored_goals - $conceded_goals,
+            'points' => $won_count * 3 + $drawn_count
+        ];
     }
 }
