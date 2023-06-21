@@ -147,9 +147,18 @@ class DatabaseSeeder extends Seeder
 
         // Játékosok létrehozása
         foreach ($teams as $team) {
-            Player::factory(11)->create([
-                'team_id' => $team->id(),
-            ]);
+            $playerNumbers = [];
+
+            for ($i = 0; $i < rand(11, 15); $i++) {
+                do {
+                    $playerNumber = rand(1, 99);
+                } while (in_array($playerNumber, $playerNumbers));
+
+                Player::factory()->create([
+                    'team_id' => $team->id(),
+                    'number' => $playerNumber,
+                ]);
+            }
         }
 
         // Mérkőzések létrehozása
