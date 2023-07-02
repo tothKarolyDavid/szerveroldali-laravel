@@ -33,6 +33,23 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        Admin
+                    </div>
+
+                    <div class="card-body">
+                        <p>
+                            Bizonyos funkciók csak adminisztrátori jogosultsággal rendelkező felhasználók számára érhetőek
+                            el, mint pl.: új csapatok létrehozása, meccsek eredményének rögzítése, stb.
+                            Az adminisztrátori jogosultsággal rendelkező felhasználók adatai:
+                            <br/><br/>
+                            <strong>E-mail</strong>: admin@szerveroldali.hu <br/>
+                            <strong>Jelszó</strong>: adminpwd
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
