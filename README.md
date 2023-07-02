@@ -1,8 +1,10 @@
 # Laravel Labdarúgó-bajnokság
 
-## Feladat
-
 Egy fikcionális labdarúgó-bajnokságot kezelő webes alkalmazás, ahol böngészhetők és megfelelő jogosultság esetén szerkeszthetők az egyes csapatok és játékosok adatai, illetve a meccsek időpontjai és eseményei.
+
+### Futtatás
+
+-   A projekt klónozása után az init.bat fájl futtatásával a szükséges függőségek telepítése és a .env fájl létrehozása, az adatbázis létrehozása és feltöltése, valamint a szükséges kulcsok generálása automatikusan megtörténik, és az alkalmazás elindul. 
 
 ### Funkciók
 
