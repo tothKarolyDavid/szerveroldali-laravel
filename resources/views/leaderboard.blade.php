@@ -73,8 +73,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col text-center">
-                                                <img src="{{ $logo }}" alt="Logo" class="img-fluid rounded"
-                                                    style="max-height: 60px;">
+                                                <img src="{{ $logo }}" class="img-fluid rounded"
+                                                    style="max-height: 60px;" alt="{{ $team->shortname . ' logo' }}">
                                             </div>
                                             <div class="col text-center">
                                                 <h5 class="card-title">{{ $team->name }}</h5>

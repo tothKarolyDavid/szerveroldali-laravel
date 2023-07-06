@@ -30,10 +30,10 @@
                         @endphp
 
                         <div class="card mt-3 me-3" style="width: 18rem;">
-
-                            <img src="{{ $team_logo }}" class="card-img-top w-100 h-100"
+                            <img src="{{ $team_logo }}" class="card-img-top" style="height: 18rem;"
                                 alt="{{ $team->shortname . ' logo' }}">
-                            <div class="card-body">
+
+                            <div class="card-body bottom-0">
                                 <h5 class="card-title align-text-bottom">{{ $team->name }}</h5>
                                 <p class="card-text align-text-bottom">{{ $team->shortname }}</p>
                                 <a href="{{ route('teams.show', $team->id) }}"
