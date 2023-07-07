@@ -36,10 +36,6 @@ Route::delete('/teams/{team}/unfavorite', [TeamController::class, 'unfavorite'])
 
 Route::post('/teams/{team}/favorite', [TeamController::class, 'favorite'])->name('teams.favorite');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-
 Route::get('/', function () {
     return view('home');
 })->name('home');
