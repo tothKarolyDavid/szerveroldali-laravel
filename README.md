@@ -1,5 +1,7 @@
 # Laravel Labdarúgó-bajnokság
 
+## [Élő demo](https://limitless-leaf-dcjxrgs8am.ploi.site/)
+
 Egy fikcionális labdarúgó-bajnokságot kezelő webes alkalmazás, ahol böngészhetők és megfelelő jogosultság esetén szerkeszthetők az egyes csapatok és játékosok adatai, illetve a meccsek időpontjai és eseményei.
 
 ### Futtatás
